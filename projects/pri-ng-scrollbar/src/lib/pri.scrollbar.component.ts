@@ -19,6 +19,10 @@ import {animationFrameScheduler, fromEvent, Observable, Subject, Subscription} f
 import {filter} from 'rxjs/operators';
 import {PriHorizontalScrollbarPositions, PriScrollbarOverflowTypes, PriVerticalScrollbarPositions} from './enumerations';
 
+/**
+ * ProScrollbar component:
+ * If you feel something weired in this code, feel free to contact me, i wrote this component after a 20 hours workday.. so be gentle :)
+ * */
 @Component({
   selector: 'pri-scrollbar',
   templateUrl: 'pri.scrollbar.component.html',
