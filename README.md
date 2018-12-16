@@ -152,13 +152,19 @@ same style for both scrollbars
 This project uses the Angular CLI for building the library
 
 ```bash
-$ npm run start:lib
+$ npm run build:lib
+$ npm run start
 ```
 
-open a second terminal
+or if you want to get live updates on lib source changes
 
+Terminal 1: 
 ```bash
-$ npm run start 
+$ npm run start:lib 
+``` 
+Terminal 2:
+```bash
+$ npm run start
 ```
 
 
