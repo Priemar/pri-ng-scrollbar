@@ -2,6 +2,18 @@ h1{
   text-align: center;
 }
 
+.hint{
+  text-align: center;
+  width: 40%;
+  margin: auto;
+}
+
+.excuse{
+  color: #454545;
+  font-size: 12px;
+  text-align: center;
+}
+
 .example{
   margin: 40px auto;
   width: 50%;
@@ -33,6 +45,7 @@ pri-scrollbar{
   }
 }
 
+//style
 /deep/ pri-scrollbar.custom-size{
   .pri-scrollbar-vertical {
     width: 20px !important;
@@ -42,6 +55,17 @@ pri-scrollbar{
   }
   .pri-scrollbar-thumb {
     border-radius: (20 / 2) !important;
-    background-color: lime !important;
+  }
+  .pri-horizontal-thumb{
+    background-color: rgba(lime, .5) !important;
+  }
+  .pri-vertical-thumb {
+    background-color: rgba(purple, .5) !important;
+  }
+  .pri-horizontal-thumb:hover, .pri-scrollbar-container.x-scrolling .pri-horizontal-thumb{
+    background-color: rgba(lime, .7) !important;
+  }
+  .pri-vertical-thumb:hover, .pri-scrollbar-container.y-scrolling .pri-vertical-thumb{
+    background-color: rgba(purple, .7) !important;
   }
 }

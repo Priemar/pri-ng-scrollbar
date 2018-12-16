@@ -1,7 +1,6 @@
 $SCROLLBAR_ITEM_SIZE: 8px;
-$THUMB_COLOR: rgba(0, 0, 0,.3);
-$DEFAULT_OPACITY: 0.3;
-$HOVER_OPACITY: 0.4;
+$DEFAULT_THUMB_COLOR: rgba(0,0,0,.4);
+$DEFAULT_THUMB_HOVER_COLOR: rgba(0,0,0,.6);
 
 :host(pri-scrollbar) {
   display: block;
@@ -68,12 +67,11 @@ $HOVER_OPACITY: 0.4;
 
 //scrollbar thumb
 .pri-scrollbar-thumb {
-  background-color: $THUMB_COLOR;
+  background-color: $DEFAULT_THUMB_COLOR;
   border-radius: ($SCROLLBAR_ITEM_SIZE / 2);
   transition: height ease-out 100ms;
-  opacity: $DEFAULT_OPACITY;
   &:hover{
-    opacity: $HOVER_OPACITY;
+    background-color: $DEFAULT_THUMB_HOVER_COLOR;
   }
 }
 //scrollbar thumb container
@@ -114,16 +112,16 @@ $HOVER_OPACITY: 0.4;
   &.y-scrolling{
     .pri-scrollbar-vertical {
       opacity: 1 !important;
-      .pri-scrollbar-thumb{
-        opacity: $HOVER_OPACITY;
+      .pri-vertical-thumb{
+        background-color: $DEFAULT_THUMB_HOVER_COLOR;
       }
     }
   }
   &.x-scrolling{
     .pri-scrollbar-horizontal {
       opacity: 1 !important;
-      .pri-scrollbar-thumb{
-        opacity: $HOVER_OPACITY;
+      .pri-horizontal-thumb{
+        background-color: $DEFAULT_THUMB_HOVER_COLOR;
       }
     }
   }

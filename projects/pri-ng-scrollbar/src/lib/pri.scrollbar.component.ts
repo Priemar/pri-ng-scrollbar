@@ -11,8 +11,7 @@ import {
   OnDestroy,
   PLATFORM_ID,
   Renderer2,
-  ViewChild,
-  ViewContainerRef
+  ViewChild
 } from '@angular/core';
 import {CdkScrollable} from '@angular/cdk/overlay';
 import {DOCUMENT, isPlatformServer} from '@angular/common';
