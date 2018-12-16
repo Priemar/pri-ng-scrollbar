@@ -11,7 +11,7 @@ ___
 
 ## Table of Contents
 
-- [Live Demo](https://Priemar.github.io/pri-ng-scrollbar/)
+- [Live Demo](https://priemar.github.io/pri-ng-scrollbar/)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Options](#options)
