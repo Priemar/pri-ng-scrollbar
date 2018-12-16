@@ -1,0 +1,131 @@
+$SCROLLBAR_ITEM_SIZE: 8px;
+$THUMB_COLOR: rgba(0, 0, 0,.3);
+$DEFAULT_OPACITY: 0.3;
+$HOVER_OPACITY: 0.4;
+
+:host(pri-scrollbar) {
+  display: block;
+  overflow: hidden;
+  //hidden
+  &[overflowY=hidden]{
+    .pri-scrollbar-content {
+      overflow-y: hidden;
+    }
+  }
+  //show scrollbar
+  &[overflowY=auto], &[overflowY=scroll], &[overflowY=native-scroll]{
+    .pri-scrollbar-content{
+      overflow-y: scroll;
+    }
+  }
+  //scrollbar native-auto
+  &[overflowY=native-auto]{
+    .pri-scrollbar-content{
+      overflow-y: auto;
+    }
+  }
+  //overflow auto: scrollbar only visible on mouseover
+  &[overflowY=auto]{
+    &:not(:hover){
+      .pri-scrollbar-vertical{
+        opacity: 0;
+      }
+    }
+  }
+  //hidden
+  &[overflowX=hidden]{
+    .pri-scrollbar-content {
+      overflow-x: hidden;
+    }
+  }
+  //show scrollbar
+  &[overflowX=auto], &[overflowX=scroll], &[overflowX=native-scroll]{
+    .pri-scrollbar-content{
+      overflow-x: scroll;
+    }
+  }
+  //scrollbar native-auto
+  &[overflowX=native-auto]{
+    .pri-scrollbar-content{
+      overflow-x: auto;
+    }
+  }
+  //overflow auto: scrollbar only visible on mouseover
+  &[overflowX=auto]{
+    &:not(:hover){
+      .pri-scrollbar-horizontal{
+        opacity: 0;
+      }
+    }
+  }
+}
+
+//scrollbar content (its a wrapper for the content)
+.pri-scrollbar-content {
+  height: 100%;
+  width: 100%;
+}
+
+//scrollbar thumb
+.pri-scrollbar-thumb {
+  background-color: $THUMB_COLOR;
+  border-radius: ($SCROLLBAR_ITEM_SIZE / 2);
+  transition: height ease-out 100ms;
+  opacity: $DEFAULT_OPACITY;
+  &:hover{
+    opacity: $HOVER_OPACITY;
+  }
+}
+//scrollbar thumb container
+.pri-scrollbar-item{
+  transition: opacity 340ms ease-out;
+  opacity: 1;
+  //vertical scrollbar
+  &.pri-scrollbar-vertical{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: $SCROLLBAR_ITEM_SIZE;
+    .pri-scrollbar-thumb{
+      width: 100%;
+    }
+  }
+  //horizontal scrollbar
+  &.pri-scrollbar-horizontal{
+    position: absolute;
+    left: 0;
+    rigth: 0;
+    bottom: 0;
+    height: $SCROLLBAR_ITEM_SIZE;
+    .pri-scrollbar-thumb{
+      height: 100%;
+    }
+  }
+}
+
+//the main scroll bar container
+.pri-scrollbar-container{
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  position:relative;
+  &.y-scrolling{
+    .pri-scrollbar-vertical {
+      opacity: 1 !important;
+      .pri-scrollbar-thumb{
+        opacity: $HOVER_OPACITY;
+      }
+    }
+  }
+  &.x-scrolling{
+    .pri-scrollbar-horizontal {
+      opacity: 1 !important;
+      .pri-scrollbar-thumb{
+        opacity: $HOVER_OPACITY;
+      }
+    }
+  }
+}
+

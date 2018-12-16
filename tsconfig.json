@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "pri-ng-scrollbar": [
+        "dist/pri-ng-scrollbar"
+      ],
+      "pri-ng-scrollbar/*": [
+        "dist/pri-ng-scrollbar/*"
+      ]
+    }
   }
 }

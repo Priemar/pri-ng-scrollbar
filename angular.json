@@ -133,6 +133,46 @@
           }
         }
       }
+    },
+    "pri-ng-scrollbar": {
+      "root": "projects/pri-ng-scrollbar",
+      "sourceRoot": "projects/pri-ng-scrollbar/src",
+      "projectType": "library",
+      "prefix": "pri",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/pri-ng-scrollbar/tsconfig.lib.json",
+            "project": "projects/pri-ng-scrollbar/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/pri-ng-scrollbar/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/pri-ng-scrollbar/src/test.ts",
+            "tsConfig": "projects/pri-ng-scrollbar/tsconfig.spec.json",
+            "karmaConfig": "projects/pri-ng-scrollbar/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/pri-ng-scrollbar/tsconfig.lib.json",
+              "projects/pri-ng-scrollbar/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "pri-ng-scrollbar-demo"

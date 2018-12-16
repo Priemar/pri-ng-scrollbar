@@ -1,21 +1,76 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<h1>pri-ng-scrollbar</h1>
 
-<router-outlet></router-outlet>
+<div class="example">
+  <h2>Default:</h2>
+  <div class="scrollbar-container">
+    <pri-scrollbar>
+      <div class="dummy-content d-1">
+        overflowX: auto
+        <br>
+        overflowY: auto
+      </div>
+    </pri-scrollbar>
+  </div>
+</div>
+
+
+<div class="example">
+  <h2>Mix: native and custom scrollbar</h2>
+  <div class="scrollbar-container">
+    <pri-scrollbar overflowX="scroll" overflowY="native-scroll">
+      <div class="dummy-content d-2">
+        overflowX: scroll
+        <br>
+        overflowY: native-scroll
+      </div>
+    </pri-scrollbar>
+  </div>
+</div>
+
+<div class="example">
+  <h2>custom margins</h2>
+  <div class="scrollbar-container">
+    <pri-scrollbar marginsX="10 20" marginsY="10 20 40 40">
+      <div class="dummy-content d-3">
+        marginX => horizontal scrollbar => "10 20" => like in css: top/bottom left/right [top margin only if xPosition = 'top']
+        <br>
+        marginY: vertical scrollbar => "10 20 40 40" => - " - : top right left bottom [left margin only if yPosition = 'left']
+        <br>
+      </div>
+    </pri-scrollbar>
+  </div>
+</div>
+
+<div class="example">
+  <h2>custom margins</h2>
+  <div class="scrollbar-container">
+    <pri-scrollbar xPosition="top" yPosition="left" marginsX="8 20" marginsY="20 8">
+      <div class="dummy-content d-4">
+        xPosition: top => horizontal scrollbar
+        <br>
+        overflowY: left => vertical scrollbar
+      </div>
+    </pri-scrollbar>
+  </div>
+</div>
+
+<div class="example">
+  <h2>custom size and color</h2>
+  <div class="scrollbar-container">
+    <pri-scrollbar class="custom-size" marginsX="0 40 10 10" marginsY="20">
+      <div class="dummy-content d-5">
+        custom size and color
+      </div>
+    </pri-scrollbar>
+  </div>
+</div>
+
+
+<div class="example">
+  <h2>Default:</h2>
+  <div class="scrollbar-container">
+    <pri-scrollbar>
+      <div style="height: 500px; width: 40px;">sadfsd</div>
+    </pri-scrollbar>
+  </div>
+</div>
