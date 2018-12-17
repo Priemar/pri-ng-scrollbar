@@ -105,17 +105,21 @@ individual style for each scrollbar in component. (if its in the main style just
    .pri-scrollbar-horizontal {
      height: 40px !important;
    }
+   //scrollbar thumb (vertical)
    .pri-vertical-thumb {
      background-color: rgba(purple, .5) !important;
      border-radius: (20px / 2) !important;
    }
+   //scrollbar thumb horizontal
    .pri-horizontal-thumb{
      background-color: rgba(lime, .5) !important;
      border-radius: (40px / 2) !important;
    }
+   //scrollbar thumb horizontal (hover)
    .pri-horizontal-thumb:hover, .pri-scrollbar-container.x-scrolling .pri-horizontal-thumb{
      background-color: rgba(lime, .7) !important;
    }
+   //scrollbar thumb vertical (hover)
    .pri-vertical-thumb:hover, .pri-scrollbar-container.y-scrolling .pri-vertical-thumb{
      background-color: rgba(purple, .7) !important;
    }
@@ -132,11 +136,12 @@ same style for both scrollbars
   .pri-scrollbar-horizontal {
     height: 20px !important;
   }
+  //scrollbar thumbs (vertical and horizontal)
   .pri-scrollbar-thumb{
     background-color: rgba(white, .5) !important;
     border-radius: (20px / 2) !important;
   }
-  //color
+  //scrollbar thumbs (hover)
   .pri-scrollbar-thumb:hover,
   .pri-scrollbar-container.x-scrolling .pri-scrollbar-thumb,
   .pri-scrollbar-container.y-scrolling .pri-scrollbar-thumb {
