@@ -7,78 +7,83 @@
 
 <p class="excuse">Hope nobody feels offended by such an unstyled ugly page... if there is time left i'll add some styles i promise <<.</p>
 
+<h3 *ngIf="isCustomScrollbarSupported" class="support-info">Your Browser supports custom scrollbars!</h3>
+<h3 *ngIf="!isCustomScrollbarSupported" class="support-info not-supported">Your Browser doesn't supports custom scrollbars, fallback to native scrollbars!</h3>
+
+<div #testItem class="test-item">
+  <div></div>
+</div>
+
 <div class="example">
   <h2>Default:</h2>
-  <div class="scrollbar-container">
-    <pri-scrollbar>
-      <div class="dummy-content d-1">
-        overflowX: auto
-        <br>
-        overflowY: auto
-      </div>
-    </pri-scrollbar>
-  </div>
+  <pri-scrollbar>
+    <div class="dummy-content d-1">
+      overflowX: auto
+      <br>
+      overflowY: auto
+    </div>
+  </pri-scrollbar>
 </div>
 
 
 <div class="example">
   <h2>Mix: native and custom scrollbar</h2>
-  <div class="scrollbar-container">
-    <pri-scrollbar overflowX="scroll" overflowY="native-scroll">
-      <div class="dummy-content d-2">
-        overflowX: scroll
-        <br>
-        overflowY: native-scroll
-      </div>
-    </pri-scrollbar>
-  </div>
+  <pri-scrollbar overflowX="scroll" overflowY="native-scroll">
+    <div class="dummy-content d-2">
+      overflowX: scroll
+      <br>
+      overflowY: native-scroll
+    </div>
+  </pri-scrollbar>
 </div>
 
 <div class="example">
   <h2>Custom margins</h2>
-  <div class="scrollbar-container">
-    <pri-scrollbar marginsX="10 20" marginsY="10 20 40 40">
-      <div class="dummy-content d-3">
-        marginX => horizontal scrollbar => "10 20" => like in css: top/bottom left/right [top margin only if xPosition = 'top']
-        <br>
-        marginY: vertical scrollbar => "10 20 40 40" => - " - : top right left bottom [left margin only if yPosition = 'left']
-        <br>
-      </div>
-    </pri-scrollbar>
-  </div>
+  <pri-scrollbar marginsX="10 20" marginsY="10 20 40 40">
+    <div class="dummy-content d-3">
+      marginX => horizontal scrollbar => "10 20" => like in css: top/bottom left/right [top margin only if xPosition = 'top']
+      <br>
+      marginY: vertical scrollbar => "10 20 40 40" => - " - : top right left bottom [left margin only if yPosition = 'left']
+      <br>
+    </div>
+  </pri-scrollbar>
 </div>
 
 <div class="example">
   <h2>Custom positions</h2>
-  <div class="scrollbar-container">
-    <pri-scrollbar xPosition="top" yPosition="left" marginsX="8 20" marginsY="20 8">
-      <div class="dummy-content d-4">
-        xPosition: top => horizontal scrollbar
-        <br>
-        yPosition: left => vertical scrollbar
-      </div>
-    </pri-scrollbar>
-  </div>
+  <pri-scrollbar xPosition="top" yPosition="left" marginsX="8 20" marginsY="20 8">
+    <div class="dummy-content d-4">
+      xPosition: top => horizontal scrollbar
+      <br>
+      yPosition: left => vertical scrollbar
+    </div>
+  </pri-scrollbar>
 </div>
 
 <div class="example">
   <h2>Custom size and color</h2>
-  <div class="scrollbar-container">
-    <pri-scrollbar class="custom-size" marginsX="0 40 10 10" marginsY="20">
-      <div class="dummy-content d-5">
-        custom size and color
-      </div>
-    </pri-scrollbar>
-  </div>
+  <pri-scrollbar class="custom-size" marginsX="0 40 10 10" marginsY="20">
+    <div class="dummy-content d-5">
+      custom size and color
+    </div>
+  </pri-scrollbar>
 </div>
 
 <div class="example">
   <h2>Custom size and color</h2>
-  <div class="scrollbar-container">
-    <pri-scrollbar class="custom-default" marginsX="0 40 10 10" marginsY="20">
-      <div class="dummy-content d-6">
-        custom size and color
-      </div>
-    </pri-scrollbar>
-  </div>
+  <pri-scrollbar class="custom-default" marginsX="0 40 10 10" marginsY="20">
+    <div class="dummy-content d-6">
+      custom size and color
+    </div>
+  </pri-scrollbar>
+</div>
+
+
+<div class="example flex-example">
+  <h2>Flex Container</h2>
+  <pri-scrollbar>
+    <div class="dummy-content d-7">
+      Flex container
+    </div>
+  </pri-scrollbar>
 </div>

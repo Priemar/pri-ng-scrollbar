@@ -287,7 +287,9 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy {
     if (!this._isSSR && this.scrollable && this._scrollableNative) {
       // calculate native scrollbar size (theoretically we dont need to calculate the scrollbar size on every state change)
       // but it shouldn't be a problem in case of performance
-      const nativeScrollbarSize = this._scrollableNative.offsetWidth - this._scrollableNative.clientWidth;
+      const nativeScrollbarSize = this.overflowY !== PriScrollbarOverflowTypes.hidden
+                                 ? this._scrollableNative.offsetWidth - this._scrollableNative.clientWidth
+                                 : this._scrollableNative.offsetHeight - this._scrollableNative.clientHeight;
       // show vertical scroll bar
       // if native scrollbar size is 0 its a floatingScrollW. and we cant use pri-scrollbar
       const showY = this.vertical && this.verticalThumb && nativeScrollbarSize > 0 &&
@@ -295,7 +297,7 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy {
       // show horizontal scrollbar
       const showX = this.horizontal && this.horizontalThumb && nativeScrollbarSize > 0 &&
         (this.overflowX === PriScrollbarOverflowTypes.auto || this.overflowX === PriScrollbarOverflowTypes.scroll);
-      // init scrollstate
+      // init scroll state
       const newState: PriScrollState = {
         showX: showX,
         showY: showY,
@@ -335,7 +337,8 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy {
         this.renderer.setStyle(this.vertical.nativeElement, 'left', 'auto');
       }
       // set bottom if we use the custom scroll position (bottom => native scrollbar size)
-      const bottom = `${nativeScrollbarSize + this._marginsY.bottom }px`;
+      // only add native scrollbar size if its not hidden
+      const bottom = `${(this.overflowX !== PriScrollbarOverflowTypes.hidden ? nativeScrollbarSize : 0) + this._marginsY.bottom }px`;
       const top = `${this._marginsY.top }px`;
       // set left and right depending on the yPosition
       const left = this._yPosition === PriVerticalScrollbarPositions.left  ? `${this._marginsY.left}px` : '0px';
@@ -362,7 +365,8 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy {
         this.renderer.setStyle(this.horizontal.nativeElement, 'top', 'auto');
       }
       // set bottom if we use the custom scroll position (bottom => native scrollbar size)
-      const right = `${nativeScrollbarSize + this._marginsX.right }px`;
+      // only add native scrollbar size if its not hidden
+      const right = `${(this.overflowY !== PriScrollbarOverflowTypes.hidden ? nativeScrollbarSize : 0) + this._marginsX.right }px`;
       const left = `${this._marginsX.left }px`;
       // set left and right depending on the yPosition
       const top = this._xPosition === PriHorizontalScrollbarPositions.top  ? `${this._marginsX.top}px` : '0px';

@@ -88,7 +88,7 @@ In your template
 
 ***
 
- > Auto fallback for native devices, bec. its not possible to show hide native scrollbars.
+ > Auto fallback to native scrollbars for mobile devices, bec. its not possible to show / hide custom scrollbars.
 
 ***
 

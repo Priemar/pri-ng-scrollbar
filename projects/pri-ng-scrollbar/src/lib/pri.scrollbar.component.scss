@@ -5,6 +5,7 @@ $DEFAULT_THUMB_HOVER_COLOR: rgba(0,0,0,.6);
 :host(pri-scrollbar) {
   display: block;
   overflow: hidden;
+  position: relative;
   //hidden
   &[overflowY=hidden]{
     .pri-scrollbar-content {
@@ -57,6 +58,15 @@ $DEFAULT_THUMB_HOVER_COLOR: rgba(0,0,0,.6);
       }
     }
   }
+}
+
+//wrapper for older safari browsers
+.pri-wrapper{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 //scrollbar content (its a wrapper for the content)
@@ -126,4 +136,3 @@ $DEFAULT_THUMB_HOVER_COLOR: rgba(0,0,0,.6);
     }
   }
 }
-
