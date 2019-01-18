@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.4
+
+- Updated: all demo project packages, bec. of the webpack security risk in a dependency of @angular-devkit/build-angular. The pri-ng-scroll library itself is not effected by this udpates
+
 ## 1.0.3
 
 - Fixed: wrong vertical scrollbar height when horizontal scrollbar overflowX was hidden
