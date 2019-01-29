@@ -73,6 +73,13 @@ $DEFAULT_THUMB_HOVER_COLOR: rgba(0,0,0,.6);
 .pri-scrollbar-content {
   height: 100%;
   width: 100%;
+  box-sizing: border-box;
+  &.has-vertical-scroll {
+    padding-right: 1px;
+  }
+  &.has-horizontal-scroll {
+    padding-bottom: 1px;
+  }
 }
 
 //scrollbar thumb

@@ -2,7 +2,9 @@
 <div class="pri-wrapper">
   <div class="pri-scrollbar-container" #scrollbarContainer>
     <!--content-->
-    <div class="pri-scrollbar-content" cdkScrollable>
+    <div class="pri-scrollbar-content" cdkScrollable
+         [class.has-vertical-scroll]="hasYScrollbar"
+         [class.has-horizontal-scroll]="hasXScrollbar">
       <ng-content></ng-content>
     </div>
     <!--vertical scrollbar-->

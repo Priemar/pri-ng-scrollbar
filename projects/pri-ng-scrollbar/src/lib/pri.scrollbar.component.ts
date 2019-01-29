@@ -287,9 +287,13 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy {
     if (!this._isSSR && this.scrollable && this._scrollableNative) {
       // calculate native scrollbar size (theoretically we dont need to calculate the scrollbar size on every state change)
       // but it shouldn't be a problem in case of performance
-      const nativeScrollbarSize = this.overflowY !== PriScrollbarOverflowTypes.hidden
+      let nativeScrollbarSize = this.overflowY !== PriScrollbarOverflowTypes.hidden
                                  ? this._scrollableNative.offsetWidth - this._scrollableNative.clientWidth
                                  : this._scrollableNative.offsetHeight - this._scrollableNative.clientHeight;
+      // add 1 px to our native scrollbar size (this prevents browser rounding problems when zoomed in/out)
+      if (nativeScrollbarSize > 0) {
+        nativeScrollbarSize++;
+      }
       // show vertical scroll bar
       // if native scrollbar size is 0 its a floatingScrollW. and we cant use pri-scrollbar
       const showY = this.vertical && this.verticalThumb && nativeScrollbarSize > 0 &&
