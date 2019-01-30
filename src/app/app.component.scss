@@ -51,6 +51,10 @@ h1{
   }
 }
 
+.custom-scroll{
+  background-color: darkorange;
+}
+
 pri-scrollbar{
   border: 1px solid black;
   height: 300px;
@@ -79,6 +83,17 @@ pri-scrollbar{
     background-color: #343434;
     color: white;
   }
+}
+
+.dynamic-content{
+  background-color: lavender;
+}
+
+.dynamic-item{
+  display: block;
+  padding: 40px;
+  box-sizing: border-box;
+  border-bottom: 1px solid gray;
 }
 
 //style

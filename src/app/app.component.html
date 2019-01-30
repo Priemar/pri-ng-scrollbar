@@ -78,7 +78,6 @@
   </pri-scrollbar>
 </div>
 
-
 <div class="example flex-example">
   <h2>Flex Container</h2>
   <pri-scrollbar>
@@ -87,3 +86,21 @@
     </div>
   </pri-scrollbar>
 </div>
+
+<div class="example">
+  <h2>Custom Scrollbars overflow = 'scroll'</h2>
+  <pri-scrollbar class="custom-scroll" overflowX="scroll" overflowY="scroll" >
+    <div>Content size is smaller than its container</div>
+  </pri-scrollbar>
+</div>
+
+<div class="example">
+  <h2>Dynamic Content</h2>
+  <pri-scrollbar class="dynamic-content">
+    <div class="dynamic-item" *ngFor="let item of dynamicItems">Item: {{ item }}</div>
+  </pri-scrollbar>
+  <button type="button" (click)="addDynamicItem()">Add Item</button>
+  <button type="button" (click)="removeDynamicItem()" [disabled]="dynamicItems?.length <= 0">Remove Item</button>
+</div>
+
+<p style="height:0; width:0; overflow: hidden;">ChangeDetection Fired Binding {{ changeDetectionTriggered }}</p>

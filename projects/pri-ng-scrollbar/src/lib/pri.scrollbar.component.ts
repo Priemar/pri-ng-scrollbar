@@ -224,20 +224,24 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy {
   }
   /**state changed*/
   private _stateChanged(state: PriScrollState) {
+    // show / hide scrollbars
     this.hasXScrollbar = state.showX;
     this.hasYScrollbar = state.showY;
     // helper
     const nativeScrollbarSizeChanged = state.nativeScrollbarSize !== this._oldState.nativeScrollbarSize;
     // requires scroll
-    const xRequireScroll = this._scrollableNative.clientWidth < this._scrollableNative.scrollWidth;
-    const yRequireScroll = this._scrollableNative.clientHeight < this._scrollableNative.scrollHeight;
+    state.xRequiresScroll = state.showX &&
+                            (this._scrollableNative.clientWidth < this._scrollableNative.scrollWidth ||
+                             this.overflowX === PriScrollbarOverflowTypes.scroll);
+    state.yRequiresScroll = state.showY &&
+                            (this._scrollableNative.clientHeight < this._scrollableNative.scrollHeight ||
+                             this.overflowY === PriScrollbarOverflowTypes.scroll);
     // changed
-    const showXChanged = (state.showX !== this._oldState.showX) ||
-                         (xRequireScroll && state.showX && !this._oldState.showX) ||
-                         (!xRequireScroll && this._oldState.showX);
-    const showYChanged = (state.showY !== this._oldState.showY) ||
-                          (yRequireScroll && state.showY && !this._oldState.showY) ||
-                          (!yRequireScroll && this._oldState.showY);
+    const showXChanged = (state.showX !== this._oldState.showX);
+    const showYChanged = (state.showY !== this._oldState.showY);
+    const xRequiresScrollChanged = state.xRequiresScroll !== this._oldState.xRequiresScroll;
+    const yRequiresScrollChanged = state.yRequiresScroll !== this._oldState.yRequiresScroll;
+
     // create / add mutation observer if there is at least one custom scrollbar visible
     if (!this._observer && (state.showX || state.showY)) {
       this._observer = new MutationObserver(() => this._updateState(true, true));
@@ -256,11 +260,11 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy {
       this.refreshHorizontalContainer(state.showX, state.nativeScrollbarSize);
     }
     // refresh scroll item (container of the scroll thumb)
-    if (state.showY && yRequireScroll && (state.forceScrollbarItemRefresh || showXChanged || nativeScrollbarSizeChanged)) {
-      this.refreshVerticalScrollbarItem(state.nativeScrollbarSize);
+    if (state.forceScrollbarItemRefresh || showXChanged || yRequiresScrollChanged || nativeScrollbarSizeChanged) {
+      this.refreshVerticalScrollbarItem(state.nativeScrollbarSize, state.yRequiresScroll);
     }
-    if (state.showX && xRequireScroll && (state.forceScrollbarItemRefresh || showYChanged || nativeScrollbarSizeChanged)) {
-      this.refreshHorizontalScrollbarItem(state.nativeScrollbarSize);
+    if (state.forceScrollbarItemRefresh || showYChanged || xRequiresScrollChanged || nativeScrollbarSizeChanged) {
+      this.refreshHorizontalScrollbarItem(state.nativeScrollbarSize, state.xRequiresScroll);
     }
     // refresh thumbs
     animationFrameScheduler.schedule(() => {
@@ -275,7 +279,7 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy {
     });
     // we need to trigger change detection for this component, bec. we have a binding on hasXScrollbar, hasYScrollbar which are set to
     // showX and showY
-    if (!state.forceContainerRefresh || showXChanged || showYChanged) {
+    if (state.forceContainerRefresh || showXChanged || showYChanged) {
       this.cd.detectChanges();
     }
     // set state
@@ -327,59 +331,73 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy {
     this.renderer.setStyle(this.scrollbarContainer.nativeElement, 'height', height);
   }
   /**refresh vertical scrollbar item*/
-  private refreshVerticalScrollbarItem(nativeScrollbarSize: number) {
+  private refreshVerticalScrollbarItem(nativeScrollbarSize: number, requiresScroll: boolean) {
     // not nec. but better check once more
     if (this.vertical && this.vertical.nativeElement) {
-      // update vertical scrollbar position
-      const scrollBarSize = `${nativeScrollbarSize}px`;
-      // position is left
-      if (this._yPosition === PriVerticalScrollbarPositions.left) {
-        this.renderer.setStyle(this.vertical.nativeElement, 'right', 'auto');
-        this.renderer.setStyle(this.vertical.nativeElement, 'left', '0');
+      // if the content is not using the full height, we can hide our scroll bar (by setting display: none)
+      // better performance for this case compared to ngIf
+      if (!requiresScroll) {
+        this.renderer.setStyle(this.vertical.nativeElement, 'display', 'none');
       } else {
-        this.renderer.setStyle(this.vertical.nativeElement, 'right', scrollBarSize);
-        this.renderer.setStyle(this.vertical.nativeElement, 'left', 'auto');
+        // update vertical scrollbar position
+        const scrollBarSize = `${nativeScrollbarSize}px`;
+        this.renderer.setStyle(this.vertical.nativeElement, 'display', 'block');
+        // position is left
+        if (this._yPosition === PriVerticalScrollbarPositions.left) {
+          this.renderer.setStyle(this.vertical.nativeElement, 'right', 'auto');
+          this.renderer.setStyle(this.vertical.nativeElement, 'left', '0');
+        } else {
+          this.renderer.setStyle(this.vertical.nativeElement, 'right', scrollBarSize);
+          this.renderer.setStyle(this.vertical.nativeElement, 'left', 'auto');
+        }
+        // set bottom if we use the custom scroll position (bottom => native scrollbar size)
+        // only add native scrollbar size if its not hidden
+        const bottom = `${(this.overflowX !== PriScrollbarOverflowTypes.hidden ? nativeScrollbarSize : 0) + this._marginsY.bottom}px`;
+        const top = `${this._marginsY.top}px`;
+        // set left and right depending on the yPosition
+        const left = this._yPosition === PriVerticalScrollbarPositions.left ? `${this._marginsY.left}px` : '0px';
+        const right = this._yPosition === PriVerticalScrollbarPositions.right ? `${this._marginsY.right}px` : '0px';
+        // set styles
+        this.renderer.setStyle(this.vertical.nativeElement, 'bottom', bottom);
+        this.renderer.setStyle(this.vertical.nativeElement, 'top', top);
+        this.renderer.setStyle(this.vertical.nativeElement, 'margin-left', left);
+        this.renderer.setStyle(this.vertical.nativeElement, 'margin-right', right);
       }
-      // set bottom if we use the custom scroll position (bottom => native scrollbar size)
-      // only add native scrollbar size if its not hidden
-      const bottom = `${(this.overflowX !== PriScrollbarOverflowTypes.hidden ? nativeScrollbarSize : 0) + this._marginsY.bottom }px`;
-      const top = `${this._marginsY.top }px`;
-      // set left and right depending on the yPosition
-      const left = this._yPosition === PriVerticalScrollbarPositions.left  ? `${this._marginsY.left}px` : '0px';
-      const right = this._yPosition === PriVerticalScrollbarPositions.right ? `${this._marginsY.right}px` : '0px';
-      // set styles
-      this.renderer.setStyle(this.vertical.nativeElement, 'bottom', bottom);
-      this.renderer.setStyle(this.vertical.nativeElement, 'top', top);
-      this.renderer.setStyle(this.vertical.nativeElement, 'margin-left', left);
-      this.renderer.setStyle(this.vertical.nativeElement, 'margin-right', right);
     }
   }
   /**refresh horizontal scrollbar item*/
-  private refreshHorizontalScrollbarItem(nativeScrollbarSize: number) {
+  private refreshHorizontalScrollbarItem(nativeScrollbarSize: number, requiresScroll: boolean) {
     // not nec. but better check once more
     if (this.horizontal && this.horizontal.nativeElement) {
-      // update vertical scrollbar position
-      const scrollBarSize = `${nativeScrollbarSize}px`;
-      // position is top
-      if (this._xPosition === PriHorizontalScrollbarPositions.top) {
-        this.renderer.setStyle(this.horizontal.nativeElement, 'bottom', 'auto');
-        this.renderer.setStyle(this.horizontal.nativeElement, 'top', '0');
+      // if the content is not using the full height, we can hide our scroll bar (by setting display: none)
+      // better performance for this case compared to ngIf
+      if (!requiresScroll) {
+        this.renderer.setStyle(this.horizontal.nativeElement, 'display', 'none');
       } else {
-        this.renderer.setStyle(this.horizontal.nativeElement, 'bottom', scrollBarSize);
-        this.renderer.setStyle(this.horizontal.nativeElement, 'top', 'auto');
+        // update vertical scrollbar position
+        const scrollBarSize = `${nativeScrollbarSize}px`;
+        this.renderer.setStyle(this.horizontal.nativeElement, 'display', 'block');
+        // position is top
+        if (this._xPosition === PriHorizontalScrollbarPositions.top) {
+          this.renderer.setStyle(this.horizontal.nativeElement, 'bottom', 'auto');
+          this.renderer.setStyle(this.horizontal.nativeElement, 'top', '0');
+        } else {
+          this.renderer.setStyle(this.horizontal.nativeElement, 'bottom', scrollBarSize);
+          this.renderer.setStyle(this.horizontal.nativeElement, 'top', 'auto');
+        }
+        // set bottom if we use the custom scroll position (bottom => native scrollbar size)
+        // only add native scrollbar size if its not hidden
+        const right = `${(this.overflowY !== PriScrollbarOverflowTypes.hidden ? nativeScrollbarSize : 0) + this._marginsX.right}px`;
+        const left = `${this._marginsX.left}px`;
+        // set left and right depending on the yPosition
+        const top = this._xPosition === PriHorizontalScrollbarPositions.top ? `${this._marginsX.top}px` : '0px';
+        const bottom = this._xPosition === PriHorizontalScrollbarPositions.bottom ? `${this._marginsX.bottom}px` : '0px';
+        // set styles
+        this.renderer.setStyle(this.horizontal.nativeElement, 'margin-bottom', bottom);
+        this.renderer.setStyle(this.horizontal.nativeElement, 'margin-top', top);
+        this.renderer.setStyle(this.horizontal.nativeElement, 'left', left);
+        this.renderer.setStyle(this.horizontal.nativeElement, 'right', right);
       }
-      // set bottom if we use the custom scroll position (bottom => native scrollbar size)
-      // only add native scrollbar size if its not hidden
-      const right = `${(this.overflowY !== PriScrollbarOverflowTypes.hidden ? nativeScrollbarSize : 0) + this._marginsX.right }px`;
-      const left = `${this._marginsX.left }px`;
-      // set left and right depending on the yPosition
-      const top = this._xPosition === PriHorizontalScrollbarPositions.top  ? `${this._marginsX.top}px` : '0px';
-      const bottom = this._xPosition === PriHorizontalScrollbarPositions.bottom ? `${this._marginsX.bottom}px` : '0px';
-      // set styles
-      this.renderer.setStyle(this.horizontal.nativeElement, 'margin-bottom', bottom);
-      this.renderer.setStyle(this.horizontal.nativeElement, 'margin-top', top);
-      this.renderer.setStyle(this.horizontal.nativeElement, 'left', left);
-      this.renderer.setStyle(this.horizontal.nativeElement, 'right', right);
     }
   }
   /**refresh vertical thumb*/
@@ -525,6 +543,8 @@ interface PriScrollState {
   nativeScrollbarSize?: number;
   forceContainerRefresh?: boolean;
   forceScrollbarItemRefresh?: boolean;
+  xRequiresScroll?: boolean;
+  yRequiresScroll?: boolean;
 }
 /**mouse state*/
 interface MouseState {

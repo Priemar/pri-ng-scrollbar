@@ -1,6 +1,6 @@
 {
   "name": "pri-ng-scrollbar",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Custom overlay scrollbars using native scrolling mechanism, for angular outside angulars change detection",
   "homepage": "https://github.com/Priemar/pri-ng-scrollbar",
   "license": "MIT",
