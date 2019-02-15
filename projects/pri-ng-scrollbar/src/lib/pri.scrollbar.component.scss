@@ -60,6 +60,37 @@ $DEFAULT_THUMB_HOVER_COLOR: rgba(0,0,0,.6);
   }
 }
 
+:host(pri-scrollbar) {
+  //if dynamic class is set
+  &[dynamic=''][overflowX=hidden], &[dynamic=true][overflowX=hidden]{
+    display: flex;
+    flex-direction: column;
+    >.pri-wrapper {
+      flex: 1 1 auto;
+      min-height: 0;
+      position: relative;
+      top: unset;
+      bottom: unset;
+      left: unset;
+      right: unset;
+      display: flex;
+      flex-direction: column;
+      >.pri-scrollbar-container {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        >.pri-scrollbar-content {
+          min-height: 0;
+          -ms-flex: 0 0 auto;
+          -webkit-flex: 0 1 0%;
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+
 //wrapper for older safari browsers
 .pri-wrapper{
   position: absolute;

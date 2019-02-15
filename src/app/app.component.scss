@@ -96,6 +96,11 @@ pri-scrollbar{
   border-bottom: 1px solid gray;
 }
 
+.dynamic-scrollbar-size {
+  max-height: 400px;
+  height: auto;
+}
+
 //style
 /deep/ pri-scrollbar.custom-size{
   .pri-scrollbar-vertical {

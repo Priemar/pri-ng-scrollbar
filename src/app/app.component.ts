@@ -26,6 +26,7 @@ export class AppComponent implements AfterViewInit {
   isCustomScrollbarSupported = false;
   /**dynamic items*/
   dynamicItems = [0, 1];
+  dynamicItemsTwo = [0, 1];
 
   /**just a helper to check if change detection fired*/
   get changeDetectionTriggered(): boolean {
@@ -42,11 +43,11 @@ export class AppComponent implements AfterViewInit {
     }
   }
   /**add dynamic item*/
-  addDynamicItem() {
-    this.dynamicItems.push(this.dynamicItems.length);
+  addDynamicItem(source: number[]) {
+    source.push(source.length);
   }
   /**remove dynamic item*/
-  removeDynamicItem() {
-    this.dynamicItems = this.dynamicItems.slice(0, this.dynamicItems.length - 1);
+  removeDynamicItem(source: number[]) {
+    return source.slice(0, source.length - 1);
   }
 }

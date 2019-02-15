@@ -99,8 +99,24 @@
   <pri-scrollbar class="dynamic-content">
     <div class="dynamic-item" *ngFor="let item of dynamicItems">Item: {{ item }}</div>
   </pri-scrollbar>
-  <button type="button" (click)="addDynamicItem()">Add Item</button>
-  <button type="button" (click)="removeDynamicItem()" [disabled]="dynamicItems?.length <= 0">Remove Item</button>
+  <button type="button" (click)="addDynamicItem(dynamicItems)">Add Item</button>
+  <button type="button" (click)="dynamicItems = removeDynamicItem(dynamicItems)" [disabled]="dynamicItems?.length <= 0">Remove Item</button>
+</div>
+
+<div class="example">
+  <h2>Dynamic pri-scrollbar height, based on its content height (max-height: 400px)</h2>
+  <code>
+    This only works when: overflowX='hidden'
+    <br>
+    add attribute: dynamic
+  </code>
+  <pri-scrollbar dynamic overflowX="hidden" class="dynamic-scrollbar-size">
+    <div class="d-8">
+      <div class="dynamic-item" *ngFor="let item of dynamicItemsTwo">Item: {{ item }}</div>
+      <button type="button" (click)="addDynamicItem(dynamicItemsTwo)">Add Item</button>
+      <button type="button" (click)="dynamicItemsTwo = removeDynamicItem(dynamicItemsTwo)" [disabled]="dynamicItemsTwo?.length <= 0">Remove Item</button>
+    </div>
+  </pri-scrollbar>
 </div>
 
 <p style="height:0; width:0; overflow: hidden;">ChangeDetection Fired Binding {{ changeDetectionTriggered }}</p>

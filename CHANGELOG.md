@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.7
+
+- Added: attribute "dynamic". Use the dynamic attribute in combination with overflowX = "hidden". This will auto grow the scrollbar until it reaches the available container size.
+- Added: test example for the dynamic attribute
+
 ## 1.0.6
 
 - Fixed: angular change detection always triggered when scrolling when scrollbar content size dynamically changed
