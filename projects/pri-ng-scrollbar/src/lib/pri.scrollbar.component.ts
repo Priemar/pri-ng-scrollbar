@@ -15,8 +15,8 @@ import {
 } from '@angular/core';
 import {CdkScrollable} from '@angular/cdk/overlay';
 import {DOCUMENT, isPlatformServer} from '@angular/common';
-import {animationFrameScheduler, fromEvent, Observable, Subject, Subscription} from 'rxjs';
-import {filter} from 'rxjs/operators';
+import {animationFrameScheduler, from, fromEvent, merge, Observable, Subject, Subscription} from 'rxjs';
+import {debounceTime, filter, map, throttleTime} from 'rxjs/operators';
 import {PriHorizontalScrollbarPositions, PriScrollbarOverflowTypes, PriVerticalScrollbarPositions} from './enumerations';
 import {coerceBooleanProperty} from '@angular/cdk/coercion';
 
@@ -49,6 +49,18 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy {
         .subscribe((state) => this._stateChanged(state));
     }
   }
+
+  /** check if size changed (we are only reacting to changes if its more than 2px)
+   * because we have set a width in percentage, which can cause rounding problems especially with different zoom factors
+   * to get rid of the rounding differences, and prevent to recalculate bec. of those, we use 2px as threshold */
+  private readonly SIZE_CHANGE_THRESHHOLD = 2;
+  /**window resize debounce time*/
+  private readonly WINDOW_RESIZE_DEBOUNCE_TIME = 200;
+  /**resize throttle*/
+  private readonly RESIZE_THROTTLE = 200;
+  /**transition siz echanged properties*/
+  private readonly TRANSITION_SIZE_PROPERTIES =
+    ['top', 'right', 'bottom', 'left', 'width', 'height', 'size', 'weight' , 'padding', 'margin'];
   /**default scrollbar size*/
   private readonly DEFAULT_SCROLLBAR_SIZE = 8;
   /**subscriptions*/
@@ -57,9 +69,11 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy {
   private _mouseUpSub = Subscription.EMPTY;
   private _horizontalMouseDownSub = Subscription.EMPTY;
   private _verticalMouseDownSub = Subscription.EMPTY;
+  private _resizedSub = Subscription.EMPTY;
 
-  /**ovserver (for content changes)*/
-  private _observer: MutationObserver;
+  /**observer (for content changes)*/
+  private _resizeObserver: MutationObserver;
+
   /**
    * initialized
    * this is just a helper to prevent multiple dom access (stylechanges etc.) when view is initialized
@@ -182,7 +196,8 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy {
     // refresh
     this._updateState(false, true);
   }
-  /**dynamic (only works in combination with overflowX='hidden'*/
+  /**@deprecated will be removed next version. will be set by default
+   * dynamic (only works in combination with overflowX='hidden'*/
   private _dynamic = true;
   @HostBinding('attr.dynamic')
   @Input() set dynamic(value: boolean) {
@@ -222,9 +237,8 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy {
   }
   /**destroy*/
   ngOnDestroy() {
-    if (this._observer) {
-      this._observer.disconnect();
-    }
+    this._stopResizeListener();
+    this._resizedSub.unsubscribe();
     this._stateChanged$.complete();
     this._scrollSub.unsubscribe();
     this._mouseMoveSub.unsubscribe();
@@ -232,6 +246,46 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy {
     this._horizontalMouseDownSub.unsubscribe();
     this._verticalMouseDownSub.unsubscribe();
   }
+  /**ini size changes*/
+  private _startResizeListener() {
+    // we are creating our own subject
+    const mutationSubject = new Subject<void>();
+    this._resizeObserver = new MutationObserver(() => mutationSubject.next());
+    this._resizedSub = merge(
+      fromEvent(window, 'resize').pipe(debounceTime(this.WINDOW_RESIZE_DEBOUNCE_TIME)),
+      from(mutationSubject),
+      // only check for specific transition property names
+      fromEvent(document, 'transitionend').pipe(
+        filter((te: TransitionEvent) => this.TRANSITION_SIZE_PROPERTIES.indexOf(te.propertyName) >= 0)
+      )
+    ).pipe(
+        // throttle here (bec we want to see i.e. content size changes immediately
+        throttleTime(this.RESIZE_THROTTLE),
+        map(() => {
+          // content size changed
+          return Math.abs(this._scrollableNative.scrollHeight - this._oldState.scrollHeight) > this.SIZE_CHANGE_THRESHHOLD
+            || Math.abs(this._scrollableNative.scrollWidth - this._oldState.scrollWidth) > this.SIZE_CHANGE_THRESHHOLD
+            // scrollbar size changed
+            || Math.abs(this._scrollableNative.offsetWidth - this._oldState.offsetWidth) > this.SIZE_CHANGE_THRESHHOLD
+            || Math.abs(this._scrollableNative.offsetHeight - this._oldState.offsetHeight) > this.SIZE_CHANGE_THRESHHOLD;
+        }),
+        // only if there are changes
+        filter(changed => changed === true)
+    ).subscribe(() => {
+      this._updateState(true, true);
+    });
+    // observe mutation changes
+    this._resizeObserver.observe(document, { attributes: true, childList: true, characterData: true, subtree: true });
+  }
+  /**removes the resize listener*/
+  private _stopResizeListener() {
+    if (this._resizeObserver) {
+      this._resizedSub.unsubscribe();
+      this._resizeObserver.disconnect();
+      this._resizeObserver = null;
+    }
+  }
+
   /**state changed*/
   private _stateChanged(state: PriScrollState) {
     // show / hide scrollbars
@@ -253,12 +307,10 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy {
     const yRequiresScrollChanged = state.yRequiresScroll !== this._oldState.yRequiresScroll;
 
     // create / add mutation observer if there is at least one custom scrollbar visible
-    if (!this._observer && (state.showX || state.showY)) {
-      this._observer = new MutationObserver(() => this._updateState(true, true));
-      this._observer.observe(this._scrollableNative, { subtree: true, childList: true, characterData: true});
-    } else if (this._observer && !state.showX && !state.showY) {
-      this._observer.disconnect();
-      this._observer = null;
+    if (!this._resizeObserver && (state.showX || state.showY)) {
+      this._startResizeListener();
+    } else if (this._resizeObserver && !state.showX && !state.showY) {
+      this._stopResizeListener();
     }
     // we need to update containers when:
     // 1: show changed or
@@ -321,7 +373,11 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy {
         showY: showY,
         nativeScrollbarSize: nativeScrollbarSize,
         forceContainerRefresh: forceContainerRefresh,
-        forceScrollbarItemRefresh: forceItemRefresh
+        forceScrollbarItemRefresh: forceItemRefresh,
+        scrollHeight: this._scrollableNative.scrollHeight,
+        scrollWidth: this._scrollableNative.scrollWidth,
+        offsetHeight: this._scrollableNative.offsetHeight,
+        offsetWidth: this._scrollableNative.offsetWidth,
       };
       // emit state
       this._stateChanged$.next(newState);
@@ -555,6 +611,10 @@ interface PriScrollState {
   forceScrollbarItemRefresh?: boolean;
   xRequiresScroll?: boolean;
   yRequiresScroll?: boolean;
+  scrollHeight?: number;
+  scrollWidth?: number;
+  offsetHeight?: number;
+  offsetWidth?: number;
 }
 /**mouse state*/
 interface MouseState {

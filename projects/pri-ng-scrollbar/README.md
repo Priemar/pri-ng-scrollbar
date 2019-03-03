@@ -86,7 +86,7 @@ In your template
   
   Margins to position for the vertical scrollbar. (top right bottom left) or (top/bottom left/right) or (top/bottom/left/right)
 
-- **[dynamic]**: boolean (default = 'false')
+- @deprecated **[dynamic]**: boolean (default = 'true')
 
   If this property is set, the pri-scrollbar size will auto resize (height) based on its content, until it reaches the max available height.
   <br>!!! This will only work if "overflowX" is set to "hidden" !!!

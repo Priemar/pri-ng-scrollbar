@@ -1,5 +1,7 @@
 h1{
   text-align: center;
+  padding: 20px;
+  margin: 0;
 }
 
 .support-info{
@@ -83,6 +85,11 @@ pri-scrollbar{
     background-color: #343434;
     color: white;
   }
+}
+
+.dummy-content-fixed {
+  height: 2000px;
+  width: 2000px;
 }
 
 .dynamic-content{

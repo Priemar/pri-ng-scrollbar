@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.0.0
+
+- Changed: default value of dynamic attribute is changed to `true` (attribute is deprecated and will be removed in the next version, because it should set by default)
+- Added: pri-scrollbar will update when its size changed (i.e. window resize, parent size changed, etc.)
+
+Demo:
+
+- Added: test cases for resize stuff  
+
 ## 1.0.8
 
 - Fixed: dynamic attribute changed to property. dynamic attribute is now bindable

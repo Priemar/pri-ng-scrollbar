@@ -27,6 +27,9 @@ export class AppComponent implements AfterViewInit {
   /**dynamic items*/
   dynamicItems = [0, 1];
   dynamicItemsTwo = [0, 1];
+  /**parent resize example (scrollbar size)*/
+  parentResizeExampleScrollbarSize = 300;
+  resizeExampleScrollbarSize = 300;
 
   /**just a helper to check if change detection fired*/
   get changeDetectionTriggered(): boolean {

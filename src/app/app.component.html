@@ -119,4 +119,37 @@
   </pri-scrollbar>
 </div>
 
+<div class="example">
+  <h2>Scrollbar itself resize</h2>
+  <code>the scrollbar thumb should change when clicking + / -</code>
+  <pri-scrollbar overflowX="hidden" [style.height.px]="resizeExampleScrollbarSize">
+    <div class="dummy-content-fixed">
+      change scrollbar size by 100px
+      <button (click)="resizeExampleScrollbarSize = resizeExampleScrollbarSize + 100">+</button>
+      <button (click)="resizeExampleScrollbarSize = resizeExampleScrollbarSize - 100">-</button>
+    </div>
+  </pri-scrollbar>
+</div>
+
+<div class="example flex-example" [style.height.px]="parentResizeExampleScrollbarSize">
+  <h2>Scrollbar parent resized</h2>
+  <code>the scrollbar thumb should change when clicking + / -</code>
+  <pri-scrollbar style="height: 100%; width: 100%;" overflowX="hidden">
+    <div class="dummy-content-fixed">
+      change scrollbar parent by 100px
+      <button (click)="parentResizeExampleScrollbarSize = parentResizeExampleScrollbarSize + 100">+</button>
+      <button (click)="parentResizeExampleScrollbarSize = parentResizeExampleScrollbarSize - 100">-</button>
+    </div>
+  </pri-scrollbar>
+</div>
+
+<div class="example" style="height: 40vh;">
+  <h2>Window Resize</h2>
+  <code>the scrollbar thumb should change when window is resized</code>
+  <pri-scrollbar style="height: 100%; width: 100%;" overflowX="hidden">
+    <div class="dummy-content-fixed">
+    </div>
+  </pri-scrollbar>
+</div>
+
 <p style="height:0; width:0; overflow: hidden;">ChangeDetection Fired Binding {{ changeDetectionTriggered }}</p>
