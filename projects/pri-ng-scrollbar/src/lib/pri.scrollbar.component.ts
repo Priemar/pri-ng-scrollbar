@@ -183,7 +183,7 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy {
     this._updateState(false, true);
   }
   /**dynamic (only works in combination with overflowX='hidden'*/
-  private _dynamic = false;
+  private _dynamic = true;
   @HostBinding('attr.dynamic')
   @Input() set dynamic(value: boolean) {
     this._dynamic = coerceBooleanProperty(value);
