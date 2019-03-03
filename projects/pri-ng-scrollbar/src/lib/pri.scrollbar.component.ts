@@ -18,6 +18,7 @@ import {DOCUMENT, isPlatformServer} from '@angular/common';
 import {animationFrameScheduler, fromEvent, Observable, Subject, Subscription} from 'rxjs';
 import {filter} from 'rxjs/operators';
 import {PriHorizontalScrollbarPositions, PriScrollbarOverflowTypes, PriVerticalScrollbarPositions} from './enumerations';
+import {coerceBooleanProperty} from '@angular/cdk/coercion';
 
 /**
  * ProScrollbar component:
@@ -182,7 +183,14 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy {
     this._updateState(false, true);
   }
   /**dynamic (only works in combination with overflowX='hidden'*/
-  @Input() dynamic = false;
+  private _dynamic = false;
+  @HostBinding('attr.dynamic')
+  @Input() set dynamic(value: boolean) {
+    this._dynamic = coerceBooleanProperty(value);
+  }
+  get dynamic(): boolean {
+    return this._dynamic;
+  }
   /************* overflow X / Y *******************/
   @Input()
   @HostBinding('attr.overflowX')

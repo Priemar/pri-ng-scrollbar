@@ -88,7 +88,7 @@ In your template
 
 - **[dynamic]**: boolean (default = 'false')
 
-  If this attriute is set, the pri-scrollbar size will auto resize (height) based on its content, until it reaches the max available height.
+  If this property is set, the pri-scrollbar size will auto resize (height) based on its content, until it reaches the max available height.
   <br>!!! This will only work if "overflowX" is set to "hidden" !!!
    
 ***

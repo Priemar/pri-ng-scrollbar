@@ -84,8 +84,13 @@ In your template
 
 - **[marginsY]**: string (format: '0 0 0 0' or '0 0' or '0 0')
   
-    Margins to position for the vertical scrollbar. (top right bottom left) or (top/bottom left/right) or (top/bottom/left/right)
+  Margins to position for the vertical scrollbar. (top right bottom left) or (top/bottom left/right) or (top/bottom/left/right)
 
+- **[dynamic]**: boolean (default = 'false')
+
+  If this property is set, the pri-scrollbar size will auto resize (height) based on its content, until it reaches the max available height.
+  <br>!!! This will only work if "overflowX" is set to "hidden" !!!
+   
 ***
 
  > Auto fallback to native scrollbars for mobile devices, bec. its not possible to show / hide custom scrollbars.

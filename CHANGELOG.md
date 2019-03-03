@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.8
+
+- Fixed: dynamic attribute changed to property. dynamic attribute is now bindable
+
 ## 1.0.7
 
 - Added: attribute "dynamic". Use the dynamic attribute in combination with overflowX = "hidden". This will auto grow the scrollbar until it reaches the available container size.
