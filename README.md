@@ -214,7 +214,7 @@ if you are using multiple web-components which are built with angular, you shoul
 #### 2.Individual
 
 if you are using multiple angular built web-components, you only need to import polyfills once, which prevents conflicts and code duplication => less network traffic
-As you can see in the example above there are two polyfills, if you don't want to support IE and older browsers you dont need to include the `es2016-polyfills.js`
+As you can see in the example above there are two polyfills, if you don't want to support IE and older browsers you dont need to include the `es2015-polyfills.js`
 ````html
 <head>
     <!-- uncomment this line only if you want to support IE <script src="es2015-polyfills.js" type="text/javascript"></script>-->
