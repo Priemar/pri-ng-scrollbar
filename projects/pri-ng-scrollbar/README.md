@@ -26,7 +26,10 @@ ___
 
 **Web-Component**
 
-- [GoTo](#web-component)
+- [Installation](#wc-installation)
+- [Usage](#wc-usage)
+- [Options](#wc-options)
+- [Styling](#wc-styling)
 
 **More**
 - [Development](#development)
@@ -175,7 +178,9 @@ same style for both scrollbars
 
 Since version 2.1.0  can use `pri-ng-scrollbar` in every web site which support javascript and custom scrollbars (i.e.: Wordpress, React, Vue, etc...)
 
-## Installation (web-component)
+<a name="wc-installation">
+
+## Installation
 
 **NPM**
 ```bash
@@ -184,14 +189,16 @@ npm install --save pri-ng-scrollbar
 
 **the script files are located in `node_modules/pri-ng-scrollbar/web-component/...`**. You simply need to copy the files in your www folder
 
-## Usage (web-component)
+<a name="wc-usage">
+
+## Usage
 
 There are different builds and option which you can choose from.
 
 #### 1.Bundle
 
 the bundle contains everything you need to run `pri-ng-scrollbar` includes IE, Edge, Firefox, Chrome etc...
-if you are using multiple web-components which are built with angular, you should use <br> [2. Individual](#2.Individual)
+if you are using multiple web-components which are built with angular, you should use (see. 2. Individual)
 
 ````html
 <body>
@@ -224,9 +231,13 @@ As you can see in the example above there are two polyfills, if you don't want t
 
 ````
 
+<a name="wc-options">
+
 ### Options (web-component)
 
 you can use all angular properties as standard html attributes see [Options](#options)
+
+<a name="wc-styling">
 
 ## Styling (web-component)
 
