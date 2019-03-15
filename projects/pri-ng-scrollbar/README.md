@@ -1,8 +1,12 @@
 <p align="center">  
-  <h1 align="center">Angular Custom Scrollbar: ng-pri-scrollbar</h1>
+  <h1 align="center">Custom Scrollbar: pri-ng-scrollbar</h1>  
+  <h3>Specially built for Angular</h2>
+  <h3>Since version 2.1.0 usable as web-component outside of Angular (i.e. Wordpress / React / Vue  etc...)</h2>    
 </p>
 
-Custom scrollbar with native scrolling mechanism for Angular 7. The scrollbar doesn't trigger the angular change detection when scrolling which results in better performance.
+
+Custom scrollbar with native scrolling mechanism for Angular 7.
+The scrollbar doesn't trigger the angular change detection when scrolling which results in better performance.
 Fallback for mobile devices.
 
 > I wrote this component bec. all available solutions triggered the angular change detection when scrolling. Hope it will help someone else too.
@@ -12,15 +16,27 @@ ___
 ## Table of Contents
 
 - [Live Demo](https://priemar.github.io/pri-ng-scrollbar/)
+
+**Angular**
+
 - [Installation](#installation)
 - [Usage](#usage)
 - [Options](#options)
 - [Styling](#styling)
+
+**Web-Component**
+
+- [GoTo](#web-component)
+
+**More**
 - [Development](#development)
 - [Issues](#issues)
 - [Author](#author)
 - [Credit](#credit)
 - [More Stuff](#more-stuff)
+
+
+#Angular
 
 <a name="installation"/>
 
@@ -155,6 +171,68 @@ same style for both scrollbars
 }
 ```
 
+#Web-Component
+
+Since version 2.1.0  can use `pri-ng-scrollbar` in every web site which support javascript and custom scrollbars (i.e.: Wordpress, React, Vue, etc...)
+
+## Installation (web-component)
+
+**NPM**
+```bash
+npm install --save pri-ng-scrollbar
+```
+
+**the script files are located in `node_modules/pri-ng-scrollbar/web-component/...`**. You simply need to copy the files in your www folder
+
+## Usage (web-component)
+
+There are different builds and option which you can choose from.
+
+#### 1.Bundle
+
+the bundle contains everything you need to run `pri-ng-scrollbar` includes IE, Edge, Firefox, Chrome etc...
+if you are using multiple web-components which are built with angular, you should use <br> [2. Individual](#2.Individual)
+
+````html
+<body>
+...  
+  <pri-scrollbar style="height: 300px; width: 50vw;border: 1px solid #dfdfdf" overflowX="hidden">
+    Your Content
+  </pri-scrollbar>
+  ...
+  <script src="pri-ng-scrollbar.bundle.js" type="text/javascript"></script>
+</body>
+````
+
+#### 2.Individual
+
+if you are using multiple angular built web-components, you only need to import polyfills once, which prevents conflicts and code duplication => less network traffic
+As you can see in the example above there are two polyfills, if you don't want to support IE and older browsers you dont need to include the `es2016-polyfills.js`
+````html
+<head>
+    <!-- uncomment this line only if you want to support IE <script src="es2015-polyfills.js" type="text/javascript"></script>-->
+    <script src="polyfills.js" type="text/javascript"></script>
+</head>
+<body>
+...  
+  <pri-scrollbar style="height: 300px; width: 50vw;border: 1px solid #dfdfdf" overflowX="hidden">
+    Your Content
+  </pri-scrollbar>
+  ...
+  <script src="pri-ng-scrollbar.js" type="text/javascript"></script>
+</body>
+
+````
+
+### Options (web-component)
+
+you can use all angular properties as standard html attributes see [Options](#options)
+
+## Styling (web-component)
+
+the styling is similar to the styling when using as angular component see [Styling](#styling). The only difference is: you must not use the /deep/ operator.
+
+
 <a name="development"/>
 
 ## Development
@@ -176,7 +254,6 @@ Terminal 2:
 ```bash
 $ npm run start
 ```
-
 
 <a name="issues"/>
 

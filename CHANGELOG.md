@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.1.0
+
+- New: Web-Component build, to use `pri-ng-scrollbar` outside angular.
+
+Demo:
+
+- Update: angular 7.2.9 and angular cli 7.3.9
+
 ## 2.0.0
 
 - Changed: default value of dynamic attribute is changed to `true` (attribute is deprecated and will be removed in the next version, because it should set by default)

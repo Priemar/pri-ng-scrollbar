@@ -22,7 +22,7 @@ import {coerceBooleanProperty} from '@angular/cdk/coercion';
 
 /**
  * ProScrollbar component:
- * If you feel something weired in this code, feel free to contact me, i wrote this component after a 20 hours workday.. so be gentle :)
+ * If you feel something weird in this code, feel free to contact me, i wrote this component after a 20 hours workday.. so be gentle :)
  * */
 @Component({
   selector: 'pri-scrollbar',
