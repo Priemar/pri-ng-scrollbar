@@ -1,4 +1,5 @@
 import {
+  AfterViewChecked,
   AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -30,7 +31,7 @@ import {coerceBooleanProperty} from '@angular/cdk/coercion';
   styleUrls: ['pri.scrollbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PriScrollbarComponent implements AfterViewInit, OnDestroy {
+export class PriScrollbarComponent implements AfterViewInit, OnDestroy, AfterViewChecked {
 
   /**constructor*/
   constructor(@Inject(PLATFORM_ID) private _platform: Object, private cd: ChangeDetectorRef,
@@ -235,6 +236,18 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy {
       this._updateState(true, true);
     }
   }
+  /**
+   * need to update state after view checked
+   * this is required when i.e. the scrollbar is presented as or in ng-content.
+   * The scrollbar is created immediately no matter if ng-content is added to dom or not. If its not in the dom the native-scrollbar size
+   * is zero and the custom scrollbar is not shown. AfterViewChecked will be called when the ng-content is added to dom, and then we can
+   * recheck if we need to show the scrollbar.
+   *
+   * The pratical usecase here was: mat-autocomplete where the autocomplete should use pri-scrollbar
+   */
+  ngAfterViewChecked(): void {
+    this._updateState();
+  }
   /**destroy*/
   ngOnDestroy() {
     this._stopResizeListener();
@@ -362,10 +375,10 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy {
       }
       // show vertical scroll bar
       // if native scrollbar size is 0 its a floatingScrollW. and we cant use pri-scrollbar
-      const showY = this.vertical && this.verticalThumb && nativeScrollbarSize > 0 &&
+      const showY = nativeScrollbarSize > 0 &&
         (this.overflowY === PriScrollbarOverflowTypes.auto || this.overflowY === PriScrollbarOverflowTypes.scroll);
       // show horizontal scrollbar
-      const showX = this.horizontal && this.horizontalThumb && nativeScrollbarSize > 0 &&
+      const showX = nativeScrollbarSize > 0 &&
         (this.overflowX === PriScrollbarOverflowTypes.auto || this.overflowX === PriScrollbarOverflowTypes.scroll);
       // init scroll state
       const newState: PriScrollState = {
