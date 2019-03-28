@@ -151,3 +151,11 @@ pri-scrollbar{
     background-color: rgba(white, .7) !important;
   }
 }
+
+/deep/ .mat-autocomplete-panel {
+  overflow: visible !important;
+  height: 200px !important;
+  pri-scrollbar {
+    height: 100%;
+  }
+}

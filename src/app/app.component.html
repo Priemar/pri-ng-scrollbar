@@ -152,4 +152,27 @@
   </pri-scrollbar>
 </div>
 
+
+
+<div class="example" style="margin-top: 100px;">
+  <h2>mat-autocomplete</h2>
+  <code>mat-autocomplete-panel overflow is set to visible, and pri-scrollbar height is set to 100%</code>
+  <br>
+  <mat-form-field>
+    <input type="text" matInput [matAutocomplete]="auto">
+  </mat-form-field>
+  <mat-autocomplete #auto>
+    <pri-scrollbar>
+      <mat-option>1</mat-option>
+      <mat-option>2</mat-option>
+      <mat-option>3</mat-option>
+      <mat-option>4</mat-option>
+      <mat-option>5</mat-option>
+      <mat-option>6</mat-option>
+      <mat-option>7</mat-option>
+      <mat-option>8</mat-option>
+    </pri-scrollbar>
+  </mat-autocomplete>
+</div>
+
 <p style="height:0; width:0; overflow: hidden;">ChangeDetection Fired Binding {{ changeDetectionTriggered }}</p>
