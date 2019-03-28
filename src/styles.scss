@@ -1,4 +1,9 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+/**
+   this import is just for this demo and development
+   use in your solution: @import '~pri-ng-scrollbar/theming'
+  */
+@import '../projects/pri-ng-scrollbar/src/lib/pri.scrollbar.component.theme';
 
 html, body {
   height: 100%;
@@ -11,4 +16,20 @@ body{
 
 h1{
   margin-bottom: 20px;
+}
+
+
+/**theme palette*/
+$custom-theme-palette: pri-scrollbar-palette(purple, null, 20px);
+
+/**just an example*/
+$horizontal-thumb-style: (
+  border-radius: 0
+);
+$vertical-thumb-style: (
+  border-radius: 0
+);
+/**theme style*/
+.theme-style {
+  @include pri-scrollbar-theme($custom-theme-palette, $vertical-thumb-style, $vertical-thumb-style);
 }

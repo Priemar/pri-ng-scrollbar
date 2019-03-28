@@ -1,0 +1,77 @@
+// Creates a container object for a light theme to be given to individual component theme mixins.
+@function pri-scrollbar-palette($vertical-thumb-color, $horizontal-thumb-color: null, $vertical-thumb-size: null, $horizontal-thumb-size: null) {
+  @if ($horizontal-thumb-color == null) {
+    $horizontal-thumb-color: $vertical-thumb-color;
+  }
+  @if ($horizontal-thumb-size == null) {
+    $horizontal-thumb-size: $vertical-thumb-size;
+  }
+  @return (
+    verticalThumbColor: $vertical-thumb-color,
+    horizontalThumbColor: $horizontal-thumb-color,
+    verticalThumbSize: $vertical-thumb-size,
+    horizontalThumbSize: $horizontal-thumb-size,
+  );
+}
+
+@mixin pri-scrollbar-theme($priScrollbarTheme, $horizontal-thumb-styles: null, $vertical-thumb-styles: null) {
+  pri-scrollbar {
+    $horizontalColor: map-get($priScrollbarTheme, horizontalThumbColor);
+    $horizontalHoverColor: rgba($horizontalColor, .7);
+    $verticalColor: map-get($priScrollbarTheme, verticalThumbColor);
+    $verticalHoverColor: rgba($verticalColor, .7);
+    $verticalThumbSize: map-get($priScrollbarTheme, verticalThumbSize);
+    $horizontalThumbSize: map-get($priScrollbarTheme, horizontalThumbSize);
+
+    > .pri-wrapper {
+      > .pri-scrollbar-container {
+        &.x-scrolling {
+          >.pri-scrollbar-horizontal {
+            >.pri-horizontal-thumb {
+              background-color: $horizontalHoverColor !important;
+            }
+          }
+        }
+        &.y-scrolling {
+          >.pri-scrollbar-vertical {
+            >.pri-vertical-thumb {
+              background-color: $verticalHoverColor !important;
+            }
+          }
+        }
+        .pri-scrollbar-vertical {
+          @if($verticalThumbSize) {
+            width: $verticalThumbSize;
+          }
+          .pri-vertical-thumb {
+            background-color: $verticalColor;
+            @if ($vertical-thumb-styles) {
+              @each $prop, $val in $vertical-thumb-styles {
+                #{$prop}: #{$val};
+              }
+            }
+            &.hover {
+              background-color: $verticalHoverColor;
+            }
+          }
+        }
+        .pri-scrollbar-horizontal {
+          @if($horizontalThumbSize) {
+            height: $horizontalThumbSize;
+          }
+          .pri-horizontal-thumb {
+            background-color: $horizontalColor;
+            @if ($horizontal-thumb-styles) {
+              @each $prop, $val in $horizontal-thumb-styles {
+                #{$prop}: #{$val};
+              }
+            }
+            &.hover {
+              background-color: $horizontalHoverColor;
+            }
+          }
+        }
+      }
+    }
+  }
+}
