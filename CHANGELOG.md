@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.2.0
+
+- fixed: a bug which prevent showing the custom scrollbar, when it wasn't possible on first rendering
+- fixed: refresh the scrollbar state when added to dom
+- new: possibility to style pri-scrollbar via scss (which is much cleaner)
+
+Demo:
+
+- added: example using pri-scrollbar in mat-autocomplete
+- added: example styling via scss
+
 ## 2.1.0
 
 - New: Web-Component build, to use `pri-ng-scrollbar` outside angular.

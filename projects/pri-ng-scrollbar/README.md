@@ -120,59 +120,59 @@ In your template
 
 ## Styling
 
-individual style for each scrollbar in component. (if its in the main style just remove the /deep/), if you want an individual style for a specific scrollbar, just give the scrollbar a class and add this class in the scss here
-```scss
- /deep/ pri-scrollbar{
-   .pri-scrollbar-vertical {
-     width: 20px !important;
-   }
-   .pri-scrollbar-horizontal {
-     height: 40px !important;
-   }
-   //scrollbar thumb (vertical)
-   .pri-vertical-thumb {
-     background-color: rgba(purple, .5) !important;
-     border-radius: (20px / 2) !important;
-   }
-   //scrollbar thumb horizontal
-   .pri-horizontal-thumb{
-     background-color: rgba(lime, .5) !important;
-     border-radius: (40px / 2) !important;
-   }
-   //scrollbar thumb horizontal (hover)
-   .pri-horizontal-thumb:hover, .pri-scrollbar-container.x-scrolling .pri-horizontal-thumb{
-     background-color: rgba(lime, .7) !important;
-   }
-   //scrollbar thumb vertical (hover)
-   .pri-vertical-thumb:hover, .pri-scrollbar-container.y-scrolling .pri-vertical-thumb{
-     background-color: rgba(purple, .7) !important;
-   }
- }
-```
+if you are using default css see [Styling](#wc-styling) web-component.
 
-same style for both scrollbars
+styling / theming with scss is similar to angular material.
 
-```scss
-/deep/ pri-scrollbar.custom-default {
-  .pri-scrollbar-vertical {
-    width: 20px !important;
-  }
-  .pri-scrollbar-horizontal {
-    height: 20px !important;
-  }
-  //scrollbar thumbs (vertical and horizontal)
-  .pri-scrollbar-thumb{
-    background-color: rgba(white, .5) !important;
-    border-radius: (20px / 2) !important;
-  }
-  //scrollbar thumbs (hover)
-  .pri-scrollbar-thumb:hover,
-  .pri-scrollbar-container.x-scrolling .pri-scrollbar-thumb,
-  .pri-scrollbar-container.y-scrolling .pri-scrollbar-thumb {
-    background-color: rgba(white, .7) !important;
-  }
-}
-```
+add to your style
+````scss
+@import '~pri-ng-scrollbar/theming';
+
+$vertical-thumb-color: #444;
+// (optional) if vertical-thumb-size set and horizontal-thumb-color is not set, horizontal-thumb size will be set to vertical-thumb-color
+$horizontal-thumb-color: #444;
+// (optional)
+$vertical-thumb-size: 20px;
+// if vertical-thumb-size set and horizontal-thumb-size is not set, horizontal-thumb size will be set to vertical-thumb-size
+$horizontal-thumb-size: 20px;
+
+//creates palette
+$custom-scrollbar-palette: pri-scrollbar-palette($vertical-thumb-color, $horizontal-thumb-color, $vertical-thumb-size, $horizontal-thumb-size);
+
+//now use your palette for the theme
+@include pri-scrollbar-theme($custom-scrollbar-palette);
+
+
+
+/********************* extended styling *************************/
+
+/**  
+ * will set both thumb oclors and both sized
+ * $custom-scrollbar-palette: pri-scrollbar-palette($vertical-thumb-color, null, $vertical-thumb-size, null);
+ * only sets color
+ * $custom-scrollbar-palette: pri-scrollbar-palette($vertical-thumb-color);
+ */
+
+
+/**
+ * if you want change the thumb style i.e. border radius, border, border color you can add 'map' as pri-scrollbar-theme as parameter
+ * !!! The following part is optional !!! 
+ */
+ 
+// horizontal thumb style
+$horizontal-thumb-style: (
+  border-radius: 0,
+  border: 1 px solid white
+);
+$vertical-thumb-style: (
+  border-radius: 0,
+  border: 1 px solid white
+);
+
+@include pri-scrollbar-theme($custom-theme-palette, $horizontal-thumb-style, $vertical-thumb-style);
+
+````
+
 
 #Web-Component
 
@@ -214,7 +214,7 @@ if you are using multiple web-components which are built with angular, you shoul
 #### 2.Individual
 
 if you are using multiple angular built web-components, you only need to import polyfills once, which prevents conflicts and code duplication => less network traffic
-As you can see in the example above there are two polyfills, if you don't want to support IE and older browsers you dont need to include the `es2016-polyfills.js`
+As you can see in the example above there are two polyfills, if you don't want to support IE and older browsers you dont need to include the `es2015-polyfills.js`
 ````html
 <head>
     <!-- uncomment this line only if you want to support IE <script src="es2015-polyfills.js" type="text/javascript"></script>-->
@@ -233,15 +233,67 @@ As you can see in the example above there are two polyfills, if you don't want t
 
 <a name="wc-options">
 
-### Options (web-component)
+### Options
 
 you can use all angular properties as standard html attributes see [Options](#options)
 
 <a name="wc-styling">
 
-## Styling (web-component)
+## Styling
 
-the styling is similar to the styling when using as angular component see [Styling](#styling). The only difference is: you must not use the /deep/ operator.
+individual style for each scrollbar in component. If you are using scss you see styling [Styling](#styling) angular.
+```scss
+ pri-scrollbar{
+   .pri-scrollbar-vertical {
+     width: 20px !important;
+   }
+   .pri-scrollbar-horizontal {
+     height: 40px !important;
+   }
+   //scrollbar thumb (vertical)
+   .pri-vertical-thumb {
+     background-color: rgba(purple, .5) !important;
+     border-radius: (20px / 2) !important;
+   }
+   //scrollbar thumb horizontal
+   .pri-horizontal-thumb{
+     background-color: rgba(lime, .5) !important;
+     border-radius: (40px / 2) !important;
+   }
+   //scrollbar thumb horizontal (hover)
+   .pri-horizontal-thumb:hover, .pri-scrollbar-container.x-scrolling .pri-horizontal-thumb{
+     background-color: rgba(lime, .7) !important;
+   }
+   //scrollbar thumb vertical (hover)
+   .pri-vertical-thumb:hover, .pri-scrollbar-container.y-scrolling .pri-vertical-thumb{
+     background-color: rgba(purple, .7) !important;
+   }
+ }
+```
+
+same style for both scrollbars
+
+```scss
+pri-scrollbar.custom-default {
+  .pri-scrollbar-vertical {
+    width: 20px !important;
+  }
+  .pri-scrollbar-horizontal {
+    height: 20px !important;
+  }
+  //scrollbar thumbs (vertical and horizontal)
+  .pri-scrollbar-thumb{
+    background-color: rgba(white, .5) !important;
+    border-radius: (20px / 2) !important;
+  }
+  //scrollbar thumbs (hover)
+  .pri-scrollbar-thumb:hover,
+  .pri-scrollbar-container.x-scrolling .pri-scrollbar-thumb,
+  .pri-scrollbar-container.y-scrolling .pri-scrollbar-thumb {
+    background-color: rgba(white, .7) !important;
+  }
+}
+```
 
 
 <a name="development"/>
