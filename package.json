@@ -30,8 +30,8 @@
     "update:all": "ng update --all --force",
     "start": "ng run pri-ng-scrollbar-demo:serve --host 0.0.0.0 --port 4200",
     "start:lib": "ng run pri-ng-scrollbar:build:production --watch",
-    "build": "npm run build:lib && ng run pri-ng-scrollbar-demo:build:production --base-href https://priemar.github.io/pri-ng-scrollbar/ && npm run build:web-component",
-    "build:lib": "ng run pri-ng-scrollbar:build:production && node build/copy.theme.js",
+    "build": "npm run build:lib && ng run pri-ng-scrollbar-demo:build:production --base-href https://priemar.github.io/pri-ng-scrollbar/",
+    "build:lib": "ng run pri-ng-scrollbar:build:production && node build/copy.theme.js && npm run build:web-component",
     "build:web-component": "ng run wc-pri-ng-scrollbar:build:production && node projects/web-component/bundle.js",
     "publish": "npm publish dist/pri-ng-scrollbar"
   },
