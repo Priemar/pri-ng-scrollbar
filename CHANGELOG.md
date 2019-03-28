@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.1
+
+- hotfix: null check added 
+
 ## 2.2.0
 
 - fixed: a bug which prevent showing the custom scrollbar, when it wasn't possible on first rendering

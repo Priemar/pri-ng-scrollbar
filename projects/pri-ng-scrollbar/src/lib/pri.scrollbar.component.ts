@@ -344,11 +344,11 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy, AfterVie
     // refresh thumbs
     animationFrameScheduler.schedule(() => {
       // vertical
-      if (state.showY) {
+      if (state.showY && this.vertical && this.verticalThumb) {
         this.refreshVerticalThumb(state.nativeScrollbarSize);
       }
       // horizontal
-      if (state.showX) {
+      if (state.showX && this.horizontal && this.horizontalThumb) {
         this.refreshHorizontalThumb(state.nativeScrollbarSize);
       }
     });
