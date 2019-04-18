@@ -109,7 +109,7 @@ pri-scrollbar{
 }
 
 //style
-/deep/ pri-scrollbar.custom-size{
+::ng-deep pri-scrollbar.custom-size{
   .pri-scrollbar-vertical {
     width: 20px !important;
   }
@@ -133,7 +133,7 @@ pri-scrollbar{
 }
 
 
-/deep/ pri-scrollbar.custom-default {
+::ng-deep pri-scrollbar.custom-default {
   .pri-scrollbar-vertical {
     width: 20px !important;
   }
@@ -152,7 +152,7 @@ pri-scrollbar{
   }
 }
 
-/deep/ .mat-autocomplete-panel {
+::ng-deep .mat-autocomplete-panel {
   overflow: visible !important;
   height: 200px !important;
   pri-scrollbar {
