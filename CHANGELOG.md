@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.4.0
+
+- fixed: overflowY = hidden will now hide the scrollbar correctly
+
+Demo:
+
+- rework: demo application
+
 ## 2.3.0
 
 - removed: deprecated "dynamic" attribute

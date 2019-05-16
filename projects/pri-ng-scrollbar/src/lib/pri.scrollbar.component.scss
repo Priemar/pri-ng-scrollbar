@@ -32,12 +32,6 @@ $DEFAULT_THUMB_HOVER_COLOR: rgba(0,0,0,.6);
       }
     }
   }
-  //hidden
-  &[overflowX=hidden]{
-    .pri-scrollbar-content {
-      overflow-x: hidden;
-    }
-  }
   //show scrollbar
   &[overflowX=auto], &[overflowX=scroll], &[overflowX=native-scroll]{
     .pri-scrollbar-content{
@@ -56,6 +50,12 @@ $DEFAULT_THUMB_HOVER_COLOR: rgba(0,0,0,.6);
       .pri-scrollbar-horizontal{
         opacity: 0;
       }
+    }
+  }
+  //hidden
+  &[overflowX=hidden]{
+    .pri-scrollbar-content {
+      overflow-x: hidden;
     }
   }
 }
