@@ -2,7 +2,9 @@
 
 ## 2.4.0
 
+- new: add padding for the pri-scrollbar via css. Its not necessary anymore to wrap your content in a dom element (see documentation for more details)
 - fixed: overflowY = hidden will now hide the scrollbar correctly
+- fixed: flickering problem, based on an internal calculation when zoom factor is used or width/height values have decimals
 
 Demo:
 

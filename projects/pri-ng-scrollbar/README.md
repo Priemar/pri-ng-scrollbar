@@ -104,7 +104,7 @@ In your template
 - **[marginsY]**: string (format: '0 0 0 0' or '0 0' or '0 0')
   
   Margins to position for the vertical scrollbar. (top right bottom left) or (top/bottom left/right) or (top/bottom/left/right)
-   
+
 ***
 
  > Auto fallback to native scrollbars for mobile devices, bec. its not possible to show / hide custom scrollbars.
@@ -119,6 +119,15 @@ In your template
 ## Styling
 
 if you are using default css see [Styling](#wc-styling) web-component.
+
+
+If you want a padding on the pri-scrollbar content, you have to use the following css variable on your pri-scrollbar
+
+````scss
+pri-scrollbar {
+  --padding: 10px;
+}
+````
 
 styling / theming with scss is similar to angular material.
 
@@ -239,6 +248,14 @@ you can use all angular properties as standard html attributes see [Options](#op
 
 ## Styling
 
+If you want a padding on the pri-scrollbar content, you have to use the following css variable on your pri-scrollbar
+
+````scss
+pri-scrollbar {
+  --padding: 10px;
+}
+````
+
 individual style for each scrollbar in component. If you are using scss, see styling [Styling](#styling) angular.
 ```scss
  pri-scrollbar{
@@ -327,7 +344,6 @@ If you identify any errors in the library, or have an idea for an improvement, p
 ## Planned
 
 - Rework the web-component creation when angular ivy is ready. Reduces bundle size.
-- Rework the demo app. Obv. because it looks ugly right now.
 
 <a name="author"/>
 
