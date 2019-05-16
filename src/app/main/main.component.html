@@ -70,7 +70,7 @@
   </div>
 </pri-scrollbar>
 
-<mat-card class="settings" *ngIf="isSupported">
+<mat-card class="settings">
   <mat-card-title>Settings</mat-card-title>
 
   <mat-card-subtitle>
@@ -82,7 +82,8 @@
     <!--overflow x-->
     <mat-form-field>
       <mat-label>OverflowX</mat-label>
-      <mat-select (selectionChange)="overflowChanged($event)" [ngModel]="(settings$ | async).overflowY">
+      <mat-select (selectionChange)="overflowChanged($event)" [ngModel]="(settings$ | async).overflowY"
+                  [disabled]="!isSupported">
         <mat-option *ngFor="let item of overflowTypes | enumKeys" [value]="item.key">{{ item.value }}</mat-option>
       </mat-select>
     </mat-form-field>
@@ -92,7 +93,7 @@
       <mat-label>YPosition</mat-label>
       <mat-select (selectionChange)="verticalPositionChanged($event)"
                   [ngModel]="(settings$ | async).yPosition"
-                  [disabled]="!(settings$ | async).yValuesEnabled">
+                  [disabled]="!(settings$ | async).yValuesEnabled || !isSupported">
         <mat-option *ngFor="let item of verticalPositions | enumKeys" [value]="item.key">{{ item.value }}</mat-option>
       </mat-select>
     </mat-form-field>
@@ -103,7 +104,7 @@
       <mat-hint>'top right bottom left' or 'top/bottom left/right' or 'top/bottom/left/right'</mat-hint>
       <input matInput type="text" (ngModelChange)="marginsYChanged($event)"
                   [ngModel]="(settings$ | async).marginsY"
-                  [disabled]="!(settings$ | async).yValuesEnabled">
+                  [disabled]="!(settings$ | async).yValuesEnabled || !isSupported">
     </mat-form-field>
 
     <!--overflow x-->
@@ -111,7 +112,7 @@
       <mat-label>Custom themes</mat-label>
       <mat-select (selectionChange)="themeChanged($event)"
                   [ngModel]="(settings$ | async).theme"
-                  [disabled]="!(settings$ | async).yValuesEnabled">
+                  [disabled]="!(settings$ | async).yValuesEnabled || !isSupported">
         <mat-option *ngFor="let item of themes | enumKeys" [value]="item.key">{{ item.value }}</mat-option>
       </mat-select>
     </mat-form-field>
