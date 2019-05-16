@@ -20,15 +20,15 @@ export class IconModule {
   private registerIcons() {
     this.matIconRegistry.addSvgIcon(
       'brand',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('/assets/brand.svg')
+      this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/brand.svg')
     );
     this.matIconRegistry.addSvgIcon(
       'npm',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('/assets/npm.svg')
+      this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/npm.svg')
     );
     this.matIconRegistry.addSvgIcon(
       'github',
-      this.domSanitizer.bypassSecurityTrustResourceUrl('/assets/github.svg')
+      this.domSanitizer.bypassSecurityTrustResourceUrl('./assets/github.svg')
     );
   }
 }

@@ -50,3 +50,13 @@ pri-scrollbar.scrollbar {
     height: 100%;
   }
 }
+
+
+@media (max-width: 600px) {
+  :host(*) {
+    grid-template-areas: "info info info info" ". scrollarea scrollarea ." ". settings settings .";
+  }
+  .settings {
+    margin-top: 20px;
+  }
+}
