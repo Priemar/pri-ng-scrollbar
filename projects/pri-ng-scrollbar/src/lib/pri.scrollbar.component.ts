@@ -50,6 +50,12 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy, AfterVie
     }
   }
 
+  /**
+   * to prevent variations in calcuated scrollbar size, based on value rounding (offset, client size) when zoom factor is used
+   * or when percent values are used for width and height, we assume that our native scrollbar size is 20px (it doesn't matter if its
+   * smaller, but we will ocver scrollbar with size smaller than this value)
+   */
+  private readonly ASSUME_SCROLLBAR_SIZE = 20;
   /** check if size changed (we are only reacting to changes if its more than 2px)
    * because we have set a width in percentage, which can cause rounding problems especially with different zoom factors
    * to get rid of the rounding differences, and prevent to recalculate bec. of those, we use 2px as threshold */
@@ -359,9 +365,11 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy, AfterVie
       let nativeScrollbarSize = this.overflowY !== PriScrollbarOverflowTypes.hidden
                                  ? this._scrollableNative.offsetWidth - this._scrollableNative.clientWidth
                                  : this._scrollableNative.offsetHeight - this._scrollableNative.clientHeight;
-      // add 1 px to our native scrollbar size (this prevents browser rounding problems when zoomed in/out)
+      // if the scrollbar is 0, that means the browser do not support custom scrollbars
+      // based on the "ASSUME_SCROLLBAR_SIZE" description, we always take hide scrollbars up to 20px with a static value
+      // this prevent browser rounding problems, when zoom factor or percent width/height is set
       if (nativeScrollbarSize > 0) {
-        nativeScrollbarSize++;
+        nativeScrollbarSize = nativeScrollbarSize <= this.ASSUME_SCROLLBAR_SIZE ? this.ASSUME_SCROLLBAR_SIZE : nativeScrollbarSize;
       }
       // show vertical scroll bar
       // if native scrollbar size is 0 its a floatingScrollW. and we cant use pri-scrollbar
