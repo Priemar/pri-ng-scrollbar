@@ -6,8 +6,8 @@
 
 
 Custom scrollbar with native scrolling mechanism for Angular 7.
-The scrollbar doesn't trigger the angular change detection when scrolling which results in better performance.
-Fallback for mobile devices.
+The scrollbar doesnt trigger the angular change detection when scrolling, which results in better performance.
+Fallback for mobile devices and browser which are not supporting custom scrollbars.
 
 > I wrote this component bec. all available solutions triggered the angular change detection when scrolling. Hope it will help someone else too.
 
@@ -104,15 +104,13 @@ In your template
 - **[marginsY]**: string (format: '0 0 0 0' or '0 0' or '0 0')
   
   Margins to position for the vertical scrollbar. (top right bottom left) or (top/bottom left/right) or (top/bottom/left/right)
-
-- @deprecated **[dynamic]**: boolean (default = 'true')
-
-  If this property is set, the pri-scrollbar size will auto resize (height) based on its content, until it reaches the max available height.
-  <br>!!! This will only work if "overflowX" is set to "hidden" !!!
    
 ***
 
  > Auto fallback to native scrollbars for mobile devices, bec. its not possible to show / hide custom scrollbars.
+ 
+ > pri-scrollbar size will auto resize (height) based on its content, until it reaches the max available height.
+   <br>!!! This will only work if "overflowX" is set to "hidden" !!!
 
 ***
 
@@ -147,7 +145,7 @@ $custom-scrollbar-palette: pri-scrollbar-palette($vertical-thumb-color, $horizon
 /********************* extended styling *************************/
 
 /**  
- * will set both thumb oclors and both sized
+ * will set color and size for both thumbs
  * $custom-scrollbar-palette: pri-scrollbar-palette($vertical-thumb-color, null, $vertical-thumb-size, null);
  * only sets color
  * $custom-scrollbar-palette: pri-scrollbar-palette($vertical-thumb-color);
@@ -189,7 +187,7 @@ npm install --save pri-ng-scrollbar
 
 **the script files are located in `node_modules/pri-ng-scrollbar/web-component/...`**. You simply need to copy the files in your www folder
 
-<a name="wc-usage">
+<a name="wc-usage"></a>
 
 ## Usage
 
@@ -231,17 +229,17 @@ As you can see in the example above there are two polyfills, if you don't want t
 
 ````
 
-<a name="wc-options">
+<a name="wc-options" />
 
 ### Options
 
 you can use all angular properties as standard html attributes see [Options](#options)
 
-<a name="wc-styling">
+<a name="wc-styling" />
 
 ## Styling
 
-individual style for each scrollbar in component. If you are using scss you see styling [Styling](#styling) angular.
+individual style for each scrollbar in component. If you are using scss, see styling [Styling](#styling) angular.
 ```scss
  pri-scrollbar{
    .pri-scrollbar-vertical {
@@ -323,6 +321,12 @@ $ npm run start
 ## Issues
 
 If you identify any errors in the library, or have an idea for an improvement, please open an [issue](https://github.com/Priemar/pri-ng-scrollbar/issues).
+
+<a name="planned"/>
+
+## Planned
+
+- Rework the web-component creation when angular ivy is ready. Reduces bundle size.
 
 <a name="author"/>
 

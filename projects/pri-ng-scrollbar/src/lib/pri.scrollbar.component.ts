@@ -19,11 +19,10 @@ import {DOCUMENT, isPlatformServer} from '@angular/common';
 import {animationFrameScheduler, from, fromEvent, merge, Observable, Subject, Subscription} from 'rxjs';
 import {debounceTime, filter, map, throttleTime} from 'rxjs/operators';
 import {PriHorizontalScrollbarPositions, PriScrollbarOverflowTypes, PriVerticalScrollbarPositions} from './enumerations';
-import {coerceBooleanProperty} from '@angular/cdk/coercion';
 
 /**
  * ProScrollbar component:
- * If you feel something weird in this code, feel free to contact me, i wrote this component after a 20 hours workday.. so be gentle :)
+ * If you find something weird in this code, feel free to contact me, i wrote this component after a 20 hours workday.. so be gentle :)
  * */
 @Component({
   selector: 'pri-scrollbar',
@@ -77,7 +76,7 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy, AfterVie
 
   /**
    * initialized
-   * this is just a helper to prevent multiple dom access (stylechanges etc.) when view is initialized
+   * this is just a helper to prevent multiple dom access (style changes etc.) when view is initialized
    * TODO: cleanup and remove this, there are way better solutions -> but thats the fastest one to implement
    * * */
   private _initialized = false;
@@ -197,16 +196,6 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy, AfterVie
     // refresh
     this._updateState(false, true);
   }
-  /**@deprecated will be removed next version. will be set by default
-   * dynamic (only works in combination with overflowX='hidden'*/
-  private _dynamic = true;
-  @HostBinding('attr.dynamic')
-  @Input() set dynamic(value: boolean) {
-    this._dynamic = coerceBooleanProperty(value);
-  }
-  get dynamic(): boolean {
-    return this._dynamic;
-  }
   /************* overflow X / Y *******************/
   @Input()
   @HostBinding('attr.overflowX')
@@ -217,6 +206,7 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy, AfterVie
   /**show x*/
   hasXScrollbar = true;
   hasYScrollbar = true;
+
   /**
    * after view init
    * */

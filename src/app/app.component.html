@@ -108,10 +108,8 @@
   <h2>Dynamic pri-scrollbar height, based on its content height (max-height: 400px)</h2>
   <code>
     This only works when: overflowX='hidden'
-    <br>
-    add attribute: dynamic
   </code>
-  <pri-scrollbar dynamic overflowX="hidden" class="dynamic-scrollbar-size">
+  <pri-scrollbar overflowX="hidden" class="dynamic-scrollbar-size">
     <div class="d-8">
       <div class="dynamic-item" *ngFor="let item of dynamicItemsTwo">Item: {{ item }}</div>
       <button type="button" (click)="addDynamicItem(dynamicItemsTwo)">Add Item</button>

@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.3.0
+
+- removed: deprecated "dynamic" attribute
+- fixed: some typos in demo and readme
+
 ## 2.2.1
 
 - hotfix: null check added 
