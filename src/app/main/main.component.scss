@@ -1,0 +1,54 @@
+/**
+   this import is just for this demo and development
+   use in your solution: @import '~pri-ng-scrollbar/theming'
+  */
+@import '../../../projects/pri-ng-scrollbar/src/lib/pri.scrollbar.component.theme';
+
+:host(*) {
+  display:-ms-grid;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  -ms-grid-columns: minmax(20px, 10%) 3fr minmax(300px, 1fr) minmax(20px, 10%);
+  -ms-grid-rows: auto 1fr;
+
+  grid-template-columns: minmax(20px, 10%) 3fr minmax(300px, 1fr) minmax(20px, 10%);
+  grid-template-rows: auto 1fr;
+  grid-column-gap: 20px;
+  grid-template-areas:
+    "info info info info"
+    ". scrollarea settings .";
+}
+
+.info {
+  margin-top: -20px;
+  -ms-grid-row:1;
+  -ms-grid-column:1;
+  -ms-grid-column-span:4;
+  grid-area: info;
+}
+
+pri-scrollbar.scrollbar {
+  grid-area: scrollarea;
+  -ms-grid-row:2;
+  -ms-grid-column:2;
+  border: 1px solid #424242;
+  background-color: white;
+  .content-item {
+    padding: 0 40px 0 20px;
+  }
+}
+
+.settings {
+  grid-area: settings;
+  -ms-grid-row:2;
+  -ms-grid-column:3;
+}
+
+::ng-deep .mat-autocomplete-panel {
+  overflow: visible !important;
+  height: 200px !important;
+  pri-scrollbar {
+    height: 100%;
+  }
+}

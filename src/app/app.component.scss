@@ -1,161 +1,29 @@
-h1{
-  text-align: center;
-  padding: 20px;
-  margin: 0;
-}
-
-.support-info{
-  text-align: center;
-  color: forestgreen;
-  &.not-supported {
-    color: #dd0000;
-  }
-}
-
-.test-item{
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin-top: -1000px;
-  height: 100px;
-  width: 100px;
-  overflow: auto;
-  >div{
-    height: 200px;
-    width: 200px;
-  }
-}
-
-.hint{
-  text-align: center;
-  width: 40%;
-  margin: auto;
-}
-
-.excuse{
-  color: #454545;
-  font-size: 12px;
-  text-align: center;
-}
-
-.example{
-  margin: 40px auto;
-  width: 50%;
-}
-
-.flex-example{
+:host(*) {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  height: 400px;
-  pri-scrollbar {
-    height: unset;
-    flex: 1 1 0%;
+}
+
+#header {
+  flex: 0 0 auto;
+  background: #37474f;
+  #title {
+    padding-left: 0;
+    margin-right: 1em !important;
+  }
+  a[mat-button] {
+    span {
+      margin-left: .5em;
+    }
   }
 }
 
-.custom-scroll{
-  background-color: darkorange;
-}
-
-pri-scrollbar{
-  border: 1px solid black;
-  height: 300px;
-}
-
-.dummy-content{
-  min-width: 150vw;
-  min-height: 150vh;
-  padding: 20px 10px;
-  &.d-1{
-    background-color: azure;
-  }
-  &.d-2{
-    background-color: yellow;
-  }
-  &.d-3{
-    background-color: lightpink;
-  }
-  &.d-4{
-    background-color: rgba(brown, 0.1);
-  }
-  &.d-5{
-    background-color: #FFF;
-  }
-  &.d-6{
-    background-color: #343434;
-    color: white;
-  }
-}
-
-.dummy-content-fixed {
-  height: 2000px;
-  width: 2000px;
-}
-
-.dynamic-content{
-  background-color: lavender;
-}
-
-.dynamic-item{
-  display: block;
-  padding: 40px;
-  box-sizing: border-box;
-  border-bottom: 1px solid gray;
-}
-
-.dynamic-scrollbar-size {
-  max-height: 400px;
-  height: auto;
-}
-
-//style
-::ng-deep pri-scrollbar.custom-size{
-  .pri-scrollbar-vertical {
-    width: 20px !important;
-  }
-  .pri-scrollbar-horizontal {
-    height: 40px !important;
-  }
-  .pri-vertical-thumb {
-    background-color: rgba(purple, .5) !important;
-    border-radius: (20px / 2) !important;
-  }
-  .pri-horizontal-thumb{
-    background-color: rgba(lime, .5) !important;
-    border-radius: (40px / 2) !important;
-  }
-  .pri-horizontal-thumb:hover, .pri-scrollbar-container.x-scrolling .pri-horizontal-thumb{
-    background-color: rgba(lime, .7) !important;
-  }
-  .pri-vertical-thumb:hover, .pri-scrollbar-container.y-scrolling .pri-vertical-thumb{
-    background-color: rgba(purple, .7) !important;
-  }
-}
-
-
-::ng-deep pri-scrollbar.custom-default {
-  .pri-scrollbar-vertical {
-    width: 20px !important;
-  }
-  .pri-scrollbar-horizontal {
-    height: 20px !important;
-  }
-  .pri-scrollbar-thumb{
-    background-color: rgba(white, .5) !important;
-    border-radius: (20px / 2) !important;
-  }
-  //color
-  .pri-scrollbar-thumb:hover,
-  .pri-scrollbar-container.x-scrolling .pri-scrollbar-thumb,
-  .pri-scrollbar-container.y-scrolling .pri-scrollbar-thumb {
-    background-color: rgba(white, .7) !important;
-  }
-}
-
-::ng-deep .mat-autocomplete-panel {
-  overflow: visible !important;
-  height: 200px !important;
-  pri-scrollbar {
+#main-content {
+  flex: 1 1 auto;
+  padding: 20px 0;
+  overflow-x: hidden;
+  pri-scrollbar{
     height: 100%;
   }
 }
+

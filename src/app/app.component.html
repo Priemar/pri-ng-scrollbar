@@ -1,177 +1,31 @@
-<h1>pri-ng-scrollbar</h1>
-
-<p class="hint">
-  Angular 7 custom scrollbar, with native scrolling mechanism, outside of the angular change detection for better performance.
-  Fallback for devices with floating.
-</p>
-
-<p class="excuse">Hope nobody feels offended by such an unstyled ugly page... if there is time left i'll add some styles i promise <<.</p>
-
-<h3 *ngIf="isCustomScrollbarSupported" class="support-info">Your Browser supports custom scrollbars!</h3>
-<h3 *ngIf="!isCustomScrollbarSupported" class="support-info not-supported">Your Browser doesn't support custom scrollbars, fallback to native scrollbars!</h3>
-
-<div #testItem class="test-item">
-  <div></div>
-</div>
-
-<div class="example theme-style">
-  <h2>Default:</h2>
-  <code>Styled with SCSS Theme</code>
-  <pri-scrollbar>
-    <div class="dummy-content d-1">
-      overflowX: auto
-      <br>
-      overflowY: auto
+<mat-toolbar id="header" fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="start center">
+  <!--title-->
+  <a id="title" mat-button routerLink="/">
+    <div fxLayout="row" fxLayoutGap=".3em" fxLayoutAlign="center center">
+      <mat-icon svgIcon="brand"></mat-icon>
+      <h1>pri-ng-scrollbar</h1>
     </div>
+  </a>
+  <!--documentation-->
+  <a mat-button fxHide.lt-sm href="https://www.npmjs.com/package/pri-ng-scrollbar" target="_blank">Documentation</a>
+  <!--development-->
+  <a mat-button fxHide.lt-sm routerLink="/development">Development</a>
+  <!--dummy placeholder-->
+  <div fxFlex="1 1 auto"></div>
+  <!--npm-->
+  <a mat-button fxHide.lt-sm href="https://www.npmjs.com/package/pri-ng-scrollbar" target="_blank">
+    <mat-icon svgIcon="npm" inline="true" style="height: 35px; width: 35px;"></mat-icon>
+  </a>
+  <!--github-->
+  <a mat-button fxHide.lt-sm href="https://www.npmjs.com/package/pri-ng-scrollbar" target="_blank">
+    <mat-icon svgIcon="github"></mat-icon>
+    <span>Github</span>
+  </a>
+</mat-toolbar>
+
+<!--content-->
+<section id="main-content">
+  <pri-scrollbar overflowX="hidden">
+    <router-outlet></router-outlet>
   </pri-scrollbar>
-</div>
-
-
-<div class="example">
-  <h2>Mix: native and custom scrollbar</h2>
-  <pri-scrollbar overflowX="scroll" overflowY="native-scroll">
-    <div class="dummy-content d-2">
-      overflowX: scroll
-      <br>
-      overflowY: native-scroll
-    </div>
-  </pri-scrollbar>
-</div>
-
-<div class="example">
-  <h2>Custom margins</h2>
-  <pri-scrollbar marginsX="10 20" marginsY="10 20 40 40">
-    <div class="dummy-content d-3">
-      marginX => horizontal scrollbar => "10 20" => like in css: top/bottom left/right [top margin only if xPosition = 'top']
-      <br>
-      marginY: vertical scrollbar => "10 20 40 40" => - " - : top right left bottom [left margin only if yPosition = 'left']
-      <br>
-    </div>
-  </pri-scrollbar>
-</div>
-
-<div class="example">
-  <h2>Custom positions</h2>
-  <pri-scrollbar xPosition="top" yPosition="left" marginsX="8 20" marginsY="20 8">
-    <div class="dummy-content d-4">
-      xPosition: top => horizontal scrollbar
-      <br>
-      yPosition: left => vertical scrollbar
-    </div>
-  </pri-scrollbar>
-</div>
-
-<div class="example">
-  <h2>Custom size and color</h2>
-  <pri-scrollbar class="custom-size" marginsX="0 40 10 10" marginsY="20">
-    <div class="dummy-content d-5">
-      custom size and color
-    </div>
-  </pri-scrollbar>
-</div>
-
-<div class="example">
-  <h2>Custom size and color</h2>
-  <pri-scrollbar class="custom-default" marginsX="0 40 10 10" marginsY="20">
-    <div class="dummy-content d-6">
-      custom size and color
-    </div>
-  </pri-scrollbar>
-</div>
-
-<div class="example flex-example">
-  <h2>Flex Container</h2>
-  <pri-scrollbar>
-    <div class="dummy-content d-7">
-      Flex container
-    </div>
-  </pri-scrollbar>
-</div>
-
-<div class="example">
-  <h2>Custom Scrollbars overflow = 'scroll'</h2>
-  <pri-scrollbar class="custom-scroll" overflowX="scroll" overflowY="scroll" >
-    <div>Content size is smaller than its container</div>
-  </pri-scrollbar>
-</div>
-
-<div class="example">
-  <h2>Dynamic Content</h2>
-  <pri-scrollbar class="dynamic-content">
-    <div class="dynamic-item" *ngFor="let item of dynamicItems">Item: {{ item }}</div>
-  </pri-scrollbar>
-  <button type="button" (click)="addDynamicItem(dynamicItems)">Add Item</button>
-  <button type="button" (click)="dynamicItems = removeDynamicItem(dynamicItems)" [disabled]="dynamicItems?.length <= 0">Remove Item</button>
-</div>
-
-<div class="example">
-  <h2>Dynamic pri-scrollbar height, based on its content height (max-height: 400px)</h2>
-  <code>
-    This only works when: overflowX='hidden'
-  </code>
-  <pri-scrollbar overflowX="hidden" class="dynamic-scrollbar-size">
-    <div class="d-8">
-      <div class="dynamic-item" *ngFor="let item of dynamicItemsTwo">Item: {{ item }}</div>
-      <button type="button" (click)="addDynamicItem(dynamicItemsTwo)">Add Item</button>
-      <button type="button" (click)="dynamicItemsTwo = removeDynamicItem(dynamicItemsTwo)" [disabled]="dynamicItemsTwo?.length <= 0">Remove Item</button>
-    </div>
-  </pri-scrollbar>
-</div>
-
-<div class="example">
-  <h2>Scrollbar itself resize</h2>
-  <code>the scrollbar thumb should change when clicking + / -</code>
-  <pri-scrollbar overflowX="hidden" [style.height.px]="resizeExampleScrollbarSize">
-    <div class="dummy-content-fixed">
-      change scrollbar size by 100px
-      <button (click)="resizeExampleScrollbarSize = resizeExampleScrollbarSize + 100">+</button>
-      <button (click)="resizeExampleScrollbarSize = resizeExampleScrollbarSize - 100">-</button>
-    </div>
-  </pri-scrollbar>
-</div>
-
-<div class="example flex-example" [style.height.px]="parentResizeExampleScrollbarSize">
-  <h2>Scrollbar parent resized</h2>
-  <code>the scrollbar thumb should change when clicking + / -</code>
-  <pri-scrollbar style="height: 100%; width: 100%;" overflowX="hidden">
-    <div class="dummy-content-fixed">
-      change scrollbar parent by 100px
-      <button (click)="parentResizeExampleScrollbarSize = parentResizeExampleScrollbarSize + 100">+</button>
-      <button (click)="parentResizeExampleScrollbarSize = parentResizeExampleScrollbarSize - 100">-</button>
-    </div>
-  </pri-scrollbar>
-</div>
-
-<div class="example" style="height: 40vh;">
-  <h2>Window Resize</h2>
-  <code>the scrollbar thumb should change when window is resized</code>
-  <pri-scrollbar style="height: 100%; width: 100%;" overflowX="hidden">
-    <div class="dummy-content-fixed">
-    </div>
-  </pri-scrollbar>
-</div>
-
-
-
-<div class="example" style="margin-top: 100px;">
-  <h2>mat-autocomplete</h2>
-  <code>mat-autocomplete-panel overflow is set to visible, and pri-scrollbar height is set to 100%</code>
-  <br>
-  <mat-form-field>
-    <input type="text" matInput [matAutocomplete]="auto">
-  </mat-form-field>
-  <mat-autocomplete #auto>
-    <pri-scrollbar>
-      <mat-option>1</mat-option>
-      <mat-option>2</mat-option>
-      <mat-option>3</mat-option>
-      <mat-option>4</mat-option>
-      <mat-option>5</mat-option>
-      <mat-option>6</mat-option>
-      <mat-option>7</mat-option>
-      <mat-option>8</mat-option>
-    </pri-scrollbar>
-  </mat-autocomplete>
-</div>
-
-<p style="height:0; width:0; overflow: hidden;">ChangeDetection Fired Binding {{ changeDetectionTriggered }}</p>
+</section>

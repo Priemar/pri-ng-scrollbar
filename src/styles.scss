@@ -1,4 +1,4 @@
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@angular/material/theming';
 /**
    this import is just for this demo and development
    use in your solution: @import '~pri-ng-scrollbar/theming'
@@ -12,11 +12,45 @@ html, body {
 body{
   margin: 0;
   font-family: Robot, sans-serif;
+  background-color: #eeeeee;
 }
 
-h1{
-  margin-bottom: 20px;
+.test-item{
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: -1000px;
+  height: 100px;
+  width: 100px;
+  overflow: auto;
+  >div{
+    height: 200px;
+    width: 200px;
+  }
 }
+
+
+mat-form-field {
+  width: 100%;
+}
+
+
+/*************** Material ******************************/
+
+@include mat-core();
+$default-app-primary: mat-palette($mat-lime);
+$default-app-accent:  mat-palette($mat-lime, A500, A200, A400);
+$default-app-warn:    mat-palette($mat-red);
+
+$default-app-theme: mat-dark-theme($default-app-primary, $default-app-accent, $default-app-warn);
+
+@include angular-material-theme($default-app-theme);
+
+
+
+
+
+/*************** SCROLLBAR ****************************/
 
 
 /**theme palette*/
@@ -33,3 +67,36 @@ $vertical-thumb-style: (
 .theme-style {
   @include pri-scrollbar-theme($custom-theme-palette, $vertical-thumb-style, $vertical-thumb-style);
 }
+
+
+/**theme palette*/
+$purple-theme-palette: pri-scrollbar-palette(purple, null, 20px);
+$trans-theme-palette: pri-scrollbar-palette(transparent);
+$light-theme-palette: pri-scrollbar-palette(white);
+
+/**just an example*/
+$purple-thumb-style: (
+  border-radius: 10px,
+  width: 20px
+);
+/**just an example*/
+$trans-thumb-style: (
+  border: 2px solid cyan,
+  border-radius: 0,
+  width: 6px
+);
+
+/**theme style*/
+.purple-theme {
+  @include pri-scrollbar-theme($purple-theme-palette, null, $purple-thumb-style);
+}
+.trans-theme {
+  @include pri-scrollbar-theme($trans-theme-palette, null, $trans-thumb-style);
+}
+
+.light-theme {
+  @include pri-scrollbar-theme($light-theme-palette);
+}
+
+
+

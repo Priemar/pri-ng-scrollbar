@@ -1,4 +1,4 @@
-export enum PriScrollbarOverflowTypes{
+export enum PriScrollbarOverflowTypes {
   auto = 'auto',
   hidden = 'hidden',
   scroll = 'scroll',
