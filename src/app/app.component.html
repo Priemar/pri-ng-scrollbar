@@ -9,7 +9,7 @@
   <!--documentation-->
   <a mat-button fxHide.lt-sm href="https://www.npmjs.com/package/pri-ng-scrollbar" target="_blank">Documentation</a>
   <!--development-->
-  <a mat-button fxHide.lt-sm routerLink="/development">Development</a>
+  <a mat-button fxHide.lt-sm routerLink="/development" *ngIf="!isProduction">Development</a>
   <!--dummy placeholder-->
   <div fxFlex="1 1 auto"></div>
   <!--npm-->
