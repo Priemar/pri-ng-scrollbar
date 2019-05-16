@@ -6,16 +6,16 @@ $DEFAULT_THUMB_HOVER_COLOR: rgba(0,0,0,.6);
   display: block;
   overflow: hidden;
   position: relative;
-  //hidden
-  &[overflowY=hidden]{
-    .pri-scrollbar-content {
-      overflow-y: hidden;
-    }
-  }
   //show scrollbar
   &[overflowY=auto], &[overflowY=scroll], &[overflowY=native-scroll]{
     .pri-scrollbar-content{
       overflow-y: scroll;
+    }
+  }
+  //hidden
+  &[overflowY=hidden] {
+    .pri-scrollbar-content {
+      overflow-y: hidden;
     }
   }
   //scrollbar native-auto

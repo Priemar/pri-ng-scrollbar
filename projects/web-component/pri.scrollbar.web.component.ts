@@ -2,7 +2,7 @@ import {Component, ViewEncapsulation} from '@angular/core';
 import {PriScrollbarComponent} from '../pri-ng-scrollbar/src/lib/pri.scrollbar.component';
 
 /**
- * TODO: change when angular ivy is realeased
+ * TODO: change when angular ivy is released
  */
 @Component({
   templateUrl: '../pri-ng-scrollbar/src/lib/pri.scrollbar.component.html',
