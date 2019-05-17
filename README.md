@@ -361,6 +361,5 @@ If you identify any errors in the library, or have an idea for an improvement, p
 
 ## More Stuff
 
-- [node-ng-skelton](https://github.com/Priemar/node-ng-skeleton)
-- [node-skeleton](https://github.com/Priemar/node-skeleton)
 - [finapi.crypto.csharp](https://github.com/Priemar/finapi.crypto.csharp)
+- [tscodedom](https://github.com/Priemar/tscodedom)
