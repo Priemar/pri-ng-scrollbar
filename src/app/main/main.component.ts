@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import {PriScrollbarOverflowTypes, PriVerticalScrollbarPositions} from 'pri-ng-scrollbar';
 import {BehaviorSubject} from 'rxjs';
-import {MatSelectChange} from '@angular/material';
+import { MatSelectChange } from '@angular/material/select';
 
 enum ScrollbarThemes {
   default = 'default',
@@ -50,7 +50,7 @@ export class MainComponent implements AfterViewInit, OnDestroy {
   }
 
   /**just a helper to check if custom scrollbar is available*/
-  @ViewChild('testItem') testItem: ElementRef;
+  @ViewChild('testItem', { static: true }) testItem: ElementRef;
 
   /**
    * purple theme

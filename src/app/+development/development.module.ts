@@ -1,6 +1,8 @@
 import {NgModule} from '@angular/core';
 import {DevelopmentComponent} from './development.component';
-import {MatAutocompleteModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import {DevelopmentRoutingModule} from './development.routing.module';
 import {CommonModule} from '@angular/common';
 import {PriScrollbarModule} from 'pri-ng-scrollbar';

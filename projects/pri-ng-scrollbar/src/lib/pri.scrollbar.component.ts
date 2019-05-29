@@ -104,7 +104,7 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy, AfterVie
   /**vertical scrollbar*/
   private _vertical: ElementRef;
   /**vertical (scrollbar)*/
-  @ViewChild('vertical') set vertical(value: ElementRef) {
+  @ViewChild('vertical', { static: false }) set vertical(value: ElementRef) {
     if (this._vertical !== value) {
       this._vertical = value;
       if (this._vertical) {
@@ -117,7 +117,7 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy, AfterVie
   }
   /**vertical thumb */
   private _verticalThumb: ElementRef;
-  @ViewChild('verticalThumb') set verticalThumb(value: ElementRef) {
+  @ViewChild('verticalThumb', { static: false }) set verticalThumb(value: ElementRef) {
     if (this._verticalThumb !== value) {
       this._verticalThumb = value;
       if (this._verticalThumb) {
@@ -132,7 +132,7 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy, AfterVie
   /**horizontal scrollbar*/
   private _horizontal: ElementRef;
   /**vertical (scrollbar)*/
-  @ViewChild('horizontal') set horizontal(value: ElementRef) {
+  @ViewChild('horizontal', { static: false }) set horizontal(value: ElementRef) {
     if (this._horizontal !== value) {
       this._horizontal = value;
       if (this._horizontal) {
@@ -145,7 +145,7 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy, AfterVie
   }
   /**horizontal thumb */
   private _horizontalThumb: ElementRef;
-  @ViewChild('horizontalThumb') set horizontalThumb(value: ElementRef) {
+  @ViewChild('horizontalThumb', { static: false }) set horizontalThumb(value: ElementRef) {
     if (this._horizontalThumb !== value) {
       this._horizontalThumb = value;
       if (this._horizontalThumb) {
@@ -162,9 +162,9 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy, AfterVie
   /************* ScrollContainer / Scroll Content *******************/
   /**scroll abel (native element)*/
   private _scrollableNative: HTMLElement;
-  @ViewChild(CdkScrollable) scrollable: CdkScrollable;
+  @ViewChild(CdkScrollable, { static: true }) scrollable: CdkScrollable;
   /**scroll container*/
-  @ViewChild('scrollbarContainer') scrollbarContainer: ElementRef;
+  @ViewChild('scrollbarContainer', { static: true }) scrollbarContainer: ElementRef;
 
 
   /************* Scrollbar margins **********************************/

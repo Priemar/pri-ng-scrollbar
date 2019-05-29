@@ -22,7 +22,7 @@ export class DevelopmentComponent implements AfterViewInit {
   constructor(@Inject(PLATFORM_ID) private _platform: Object, private cd: ChangeDetectorRef) {}
 
   /**just a helper to check if custom scrollbar is available*/
-  @ViewChild('testItem') testItem: ElementRef;
+  @ViewChild('testItem', { static: true }) testItem: ElementRef;
   /**show if custom scrollbar is supported*/
   isCustomScrollbarSupported = false;
   /**dynamic items*/

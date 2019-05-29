@@ -12,7 +12,7 @@ const routes: Routes = [
   ...(environment.production ? [] :
     [{
       path: 'development',
-      loadChildren: './+development/development.module#DevelopmentModule'
+      loadChildren: () => import('./+development/development.module').then(m => m.DevelopmentModule)
     }]
   ),
   { path: '**', redirectTo: '' }

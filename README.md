@@ -1,15 +1,18 @@
 <p align="center">  
   <h1 align="center">Custom Scrollbar: pri-ng-scrollbar</h1>  
-  <h3>Specially built for Angular</h2>
-  <h3>Since version 2.1.0 usable as web-component outside of Angular (i.e. Wordpress / React / Vue  etc...)</h2>    
 </p>
 
+#### Angular 8: version 3.x
+#### Angular 7: version 2.x
+#### Web-Component: version >= 2.1
 
-Custom scrollbar with native scrolling mechanism for Angular 7.
-The scrollbar doesnt trigger the angular change detection when scrolling, which results in better performance.
+
+
+Custom scrollbar with native scrolling mechanism for Angular 7 / 8.
+
+The scrollbar does not trigger the angular change detection when scrolling, which results in better performance.
+
 Fallback for mobile devices and browser which are not supporting custom scrollbars.
-
-> I wrote this component bec. all available solutions triggered the angular change detection when scrolling. Hope it will help someone else too.
 
 ___
 
@@ -343,6 +346,7 @@ If you identify any errors in the library, or have an idea for an improvement, p
 
 ## Planned
 
+- add experimental version for ivy projects
 - Rework the web-component creation when angular ivy is ready. Reduces bundle size.
 
 <a name="author"/>

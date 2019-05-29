@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.0.0
+
+- upgrade to angular 8
+
 ## 2.4.0
 
 - new: add padding for the pri-scrollbar via css. Its not necessary anymore to wrap your content in a dom element (see documentation for more details)
