@@ -37,6 +37,7 @@ ___
 **More**
 - [Development](#development)
 - [Issues](#issues)
+- [Planned](#planned)
 - [Author](#author)
 - [Credit](#credit)
 - [More Stuff](#more-stuff)
@@ -365,5 +366,6 @@ If you identify any errors in the library, or have an idea for an improvement, p
 
 ## More Stuff
 
+- [pri-ng-warehouse](https://github.com/Priemar/pri-ng-warehouse)
 - [finapi.crypto.csharp](https://github.com/Priemar/finapi.crypto.csharp)
 - [tscodedom](https://github.com/Priemar/tscodedom)
