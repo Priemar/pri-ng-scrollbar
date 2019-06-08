@@ -42,7 +42,7 @@ ___
 - [More Stuff](#more-stuff)
 
 
-#Angular
+# Angular
 
 <a name="installation"/>
 
