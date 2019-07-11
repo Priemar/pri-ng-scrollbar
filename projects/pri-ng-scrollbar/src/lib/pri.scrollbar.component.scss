@@ -7,6 +7,15 @@ $DEFAULT_THUMB_HOVER_COLOR: rgba(0,0,0,.6);
   overflow: hidden;
   position: relative;
   --padding: 0;
+
+  //hidden (seems there is a bug where the css hidden selector always matches no matter if the value is hidden or not)
+  // thats why we moved it up
+  &[overflowX=hidden] {
+    .pri-scrollbar-content {
+      overflow-x: hidden;
+    }
+  }
+
   //show scrollbar
   &[overflowY=auto], &[overflowY=scroll], &[overflowY=native-scroll]{
     .pri-scrollbar-content{
@@ -45,18 +54,13 @@ $DEFAULT_THUMB_HOVER_COLOR: rgba(0,0,0,.6);
       overflow-x: auto;
     }
   }
+
   //overflow auto: scrollbar only visible on mouseover
   &[overflowX=auto]{
     &:not(:hover){
       .pri-scrollbar-horizontal{
         opacity: 0;
       }
-    }
-  }
-  //hidden
-  &[overflowX=hidden]{
-    .pri-scrollbar-content {
-      overflow-x: hidden;
     }
   }
 }

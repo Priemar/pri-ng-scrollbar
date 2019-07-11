@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.0.1
+
+- fixed: not the whole content was visible when overflow-x was set
+- fixed: full content is now visible (before the content was smaller by about 3px)
+
+Demo:
+
+- new added a second development page
+
 ## 3.0.0
 
 - upgrade to angular 8

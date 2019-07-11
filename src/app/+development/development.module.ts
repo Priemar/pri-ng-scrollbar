@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import {DevelopmentRoutingModule} from './development.routing.module';
 import {CommonModule} from '@angular/common';
 import {PriScrollbarModule} from 'pri-ng-scrollbar';
+import {DevelopmentSecondComponent} from './development.second.component';
 
 
 @NgModule({
@@ -17,7 +18,10 @@ import {PriScrollbarModule} from 'pri-ng-scrollbar';
     MatInputModule,
     PriScrollbarModule
   ],
-  declarations: [DevelopmentComponent],
+  declarations: [
+    DevelopmentComponent,
+    DevelopmentSecondComponent
+  ],
 })
 export class DevelopmentModule {
 }
