@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "docs",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -54,6 +55,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -150,7 +155,8 @@
           "configurations": {
             "production": {
               "project": "projects/pri-ng-scrollbar/ng-package.prod.json"
-            }
+            ,              "tsConfig": "projects/pri-ng-scrollbar/tsconfig.lib.prod.json"
+}
           }
         },
         "test": {
@@ -184,6 +190,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/web-component/pri-ng-scrollbar",
             "index": "projects/web-component/index.html",
             "main": "projects/web-component/main.ts",
@@ -207,6 +214,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }

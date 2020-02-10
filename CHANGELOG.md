@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.0
+
+- updated: dependency to angular 9
+
 ## 3.0.1
 
 - fixed: not the whole content was visible when overflow-x was set

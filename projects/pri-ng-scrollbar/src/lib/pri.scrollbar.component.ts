@@ -108,7 +108,7 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy, AfterVie
   /**vertical scrollbar*/
   private _vertical: ElementRef;
   /**vertical (scrollbar)*/
-  @ViewChild('vertical', { static: false }) set vertical(value: ElementRef) {
+  @ViewChild('vertical') set vertical(value: ElementRef) {
     if (this._vertical !== value) {
       this._vertical = value;
       if (this._vertical) {
@@ -121,7 +121,7 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy, AfterVie
   }
   /**vertical thumb */
   private _verticalThumb: ElementRef;
-  @ViewChild('verticalThumb', { static: false }) set verticalThumb(value: ElementRef) {
+  @ViewChild('verticalThumb') set verticalThumb(value: ElementRef) {
     if (this._verticalThumb !== value) {
       this._verticalThumb = value;
       if (this._verticalThumb) {
@@ -136,7 +136,7 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy, AfterVie
   /**horizontal scrollbar*/
   private _horizontal: ElementRef;
   /**vertical (scrollbar)*/
-  @ViewChild('horizontal', { static: false }) set horizontal(value: ElementRef) {
+  @ViewChild('horizontal') set horizontal(value: ElementRef) {
     if (this._horizontal !== value) {
       this._horizontal = value;
       if (this._horizontal) {
@@ -149,7 +149,7 @@ export class PriScrollbarComponent implements AfterViewInit, OnDestroy, AfterVie
   }
   /**horizontal thumb */
   private _horizontalThumb: ElementRef;
-  @ViewChild('horizontalThumb', { static: false }) set horizontalThumb(value: ElementRef) {
+  @ViewChild('horizontalThumb') set horizontalThumb(value: ElementRef) {
     if (this._horizontalThumb !== value) {
       this._horizontalThumb = value;
       if (this._horizontalThumb) {
