@@ -154,9 +154,9 @@
           },
           "configurations": {
             "production": {
-              "project": "projects/pri-ng-scrollbar/ng-package.prod.json"
-            ,              "tsConfig": "projects/pri-ng-scrollbar/tsconfig.lib.prod.json"
-}
+              "project": "projects/pri-ng-scrollbar/ng-package.prod.json",
+              "tsConfig": "projects/pri-ng-scrollbar/tsconfig.lib.prod.json",
+            }
           }
         },
         "test": {
