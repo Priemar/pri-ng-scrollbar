@@ -2,6 +2,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {DevelopmentComponent} from './development.component';
 import {DevelopmentSecondComponent} from './development.second.component';
+import {DevelopmentThirdComponent} from './development.third.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,11 @@ const routes: Routes = [
     path: 'second',
     pathMatch: 'full',
     component: DevelopmentSecondComponent
+  },
+  {
+    path: 'third',
+    pathMatch: 'full',
+    component: DevelopmentThirdComponent
   }
 ];
 

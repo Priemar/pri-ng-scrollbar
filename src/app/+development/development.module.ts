@@ -7,6 +7,10 @@ import {DevelopmentRoutingModule} from './development.routing.module';
 import {CommonModule} from '@angular/common';
 import {PriScrollbarModule} from 'pri-ng-scrollbar';
 import {DevelopmentSecondComponent} from './development.second.component';
+import {DevelopmentThirdComponent} from './development.third.component';
+import {MatTreeModule} from '@angular/material/tree';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -16,11 +20,15 @@ import {DevelopmentSecondComponent} from './development.second.component';
     MatAutocompleteModule,
     MatFormFieldModule,
     MatInputModule,
-    PriScrollbarModule
+    PriScrollbarModule,
+    MatTreeModule,
+    MatIconModule,
+    MatButtonModule
   ],
   declarations: [
     DevelopmentComponent,
-    DevelopmentSecondComponent
+    DevelopmentSecondComponent,
+    DevelopmentThirdComponent
   ],
 })
 export class DevelopmentModule {
