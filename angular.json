@@ -10,7 +10,7 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss"
+          "style": "scss"
         }
       },
       "architect": {
@@ -30,8 +30,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [],
-            "es5BrowserSupport": true
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -195,8 +194,7 @@
             "index": "projects/web-component/index.html",
             "main": "projects/web-component/main.ts",
             "polyfills": "projects/web-component/polyfills.ts",
-            "tsConfig": "projects/web-component/tsconfig.web.component.json",
-            "es5BrowserSupport": true
+            "tsConfig": "projects/web-component/tsconfig.web.component.json"
           },
           "configurations": {
             "production": {

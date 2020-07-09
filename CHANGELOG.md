@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.0.0
+
+- updated: migrated to angular 10
+
 ## 4.0.0
 
 - updated: dependency to angular 9
