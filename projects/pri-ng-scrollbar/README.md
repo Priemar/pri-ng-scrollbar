@@ -31,6 +31,8 @@ ___
 
 **Web-Component**
 
+The web component is currently removed until its adapated for angular ivy.
+
 - [Installation](#wc-installation)
 - [Usage](#wc-usage)
 - [Options](#wc-options)
