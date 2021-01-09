@@ -2,6 +2,7 @@
   <h1 align="center">Custom Scrollbar: pri-ng-scrollbar</h1>  
 </p>
 
+#### Angular 11: version 6.x
 #### Angular 10: version 5.x
 #### Angular 9: version 4.x
 #### Angular 8: version 3.x

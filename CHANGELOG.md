@@ -1,5 +1,13 @@
 # Changelog
 
+## 6.1.0
+
+- fixed: peer dependencies
+
+## 6.0.0
+
+- updated: migrated to angular 11
+
 ## 5.0.0
 
 - updated: migrated to angular 10
