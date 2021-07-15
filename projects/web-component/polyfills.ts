@@ -1,4 +1,4 @@
-import 'zone.js/dist/zone';
+import 'zone.js';
 // Needed on browsers with native `customElements`.
 // (E.g.: Chrome, Opera)
 import '@webcomponents/custom-elements/src/native-shim';
