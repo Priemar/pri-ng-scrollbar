@@ -1,3 +1,4 @@
+@use '~@angular/material' as mat;
 @import '~@angular/material/theming';
 /**
    this import is just for this demo and development
@@ -37,14 +38,14 @@ mat-form-field {
 
 /*************** Material ******************************/
 
-@include mat-core();
-$default-app-primary: mat-palette($mat-lime);
-$default-app-accent:  mat-palette($mat-lime, A500, A200, A400);
-$default-app-warn:    mat-palette($mat-red);
+@include mat.core();
+$default-app-primary: mat.define-palette(mat.$lime-palette);
+$default-app-accent:  mat.define-palette(mat.$lime-palette, A500, A200, A400);
+$default-app-warn:    mat.define-palette(mat.$red-palette);
 
-$default-app-theme: mat-dark-theme($default-app-primary, $default-app-accent, $default-app-warn);
+$default-app-theme: mat.define-dark-theme($default-app-primary, $default-app-accent, $default-app-warn);
 
-@include angular-material-theme($default-app-theme);
+@include mat.all-component-themes($default-app-theme);
 
 
 
