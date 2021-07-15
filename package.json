@@ -1,8 +1,8 @@
 {
   "name": "pri-ng-scrollbar-demo",
-  "version": "6.1.0",
+  "version": "7.0.0",
   "license": "MIT",
-  "description": "Custom overlay scrollbars using native scrolling mechanism, for angular outside angular change detection. now also usable as web-component in all web applications",
+  "description": "Custom overlay scrollbars using native scrolling mechanism, for angular outside angular change detection.",
   "homepage": "https://github.com/Priemar/pri-ng-scrollbar",
   "author": {
     "name": "Mario Prieschl",
@@ -21,7 +21,6 @@
     "custom",
     "native",
     "optimized",
-    "webcomponent",
     "angular",
     "performance"
   ],
@@ -32,7 +31,6 @@
     "start:lib": "ng run pri-ng-scrollbar:build:production --watch",
     "build": "npm run build:lib && ng run pri-ng-scrollbar-demo:build:production --base-href https://priemar.github.io/pri-ng-scrollbar/ && npm run build:lib",
     "build:lib": "ng run pri-ng-scrollbar:build:production && node build/copy.theme.js",
-    "build:web-component": "npm run build:lib && ng run wc-pri-ng-scrollbar:build:production && node projects/web-component/bundle.js",
     "publish": "npm publish dist/pri-ng-scrollbar"
   },
   "private": true,
@@ -49,7 +47,6 @@
     "@angular/platform-browser": "~12.1.2",
     "@angular/platform-browser-dynamic": "~12.1.2",
     "@angular/router": "^12.1.2",
-    "@webcomponents/custom-elements": "^1.4.1",
     "core-js": "^3.6.5",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
@@ -67,7 +64,7 @@
     "codelyzer": "^6.0.0",
     "concat": "^1.0.3",
     "fs-extra": "^9.0.1",
-    "jasmine-core": "~3.6.0",
+    "jasmine-core": "~3.8.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.3.4",
     "karma-chrome-launcher": "~3.1.0",

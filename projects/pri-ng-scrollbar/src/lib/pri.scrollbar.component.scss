@@ -1,3 +1,4 @@
+@use 'sass:math';
 $SCROLLBAR_ITEM_SIZE: 8px;
 $DEFAULT_THUMB_COLOR: rgba(0,0,0,.4);
 $DEFAULT_THUMB_HOVER_COLOR: rgba(0,0,0,.6);
@@ -115,9 +116,9 @@ $DEFAULT_THUMB_HOVER_COLOR: rgba(0,0,0,.6);
 //scrollbar thumb
 .pri-scrollbar-thumb {
   background-color: $DEFAULT_THUMB_COLOR;
-  border-radius: ($SCROLLBAR_ITEM_SIZE / 2);
+  border-radius: math.div($SCROLLBAR-ITEM-SIZE, 2);
   transition: height ease-out 100ms;
-  &:hover{
+  &:hover {
     background-color: $DEFAULT_THUMB_HOVER_COLOR;
   }
 }

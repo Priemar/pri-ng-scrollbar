@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 h1{
   text-align: center;
   padding: 20px;
@@ -104,11 +106,11 @@ pri-scrollbar{
   }
   .pri-vertical-thumb {
     background-color: rgba(purple, .5) !important;
-    border-radius: (20px / 2) !important;
+    border-radius: math.div(20px, 2) !important;
   }
   .pri-horizontal-thumb{
     background-color: rgba(lime, .5) !important;
-    border-radius: (40px / 2) !important;
+    border-radius: math.div(40px, 2) !important;
   }
   .pri-horizontal-thumb:hover, .pri-scrollbar-container.x-scrolling .pri-horizontal-thumb{
     background-color: rgba(lime, .7) !important;
@@ -126,9 +128,9 @@ pri-scrollbar{
   .pri-scrollbar-horizontal {
     height: 20px !important;
   }
-  .pri-scrollbar-thumb{
+  .pri-scrollbar-thumb {
     background-color: rgba(white, .5) !important;
-    border-radius: (20px / 2) !important;
+    border-radius: math.div(20px, 2) !important;
   }
   //color
   .pri-scrollbar-thumb:hover,
