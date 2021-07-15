@@ -31,7 +31,7 @@
     "start:lib": "ng run pri-ng-scrollbar:build:production --watch",
     "build": "npm run build:lib && ng run pri-ng-scrollbar-demo:build:production --base-href https://priemar.github.io/pri-ng-scrollbar/ && npm run build:lib",
     "build:lib": "ng run pri-ng-scrollbar:build:production && node build/copy.theme.js",
-    "publish": "npm publish dist/pri-ng-scrollbar"
+    "publish": "cd dist/pri-ng-scrollbar && npm publish"
   },
   "private": true,
   "dependencies": {
